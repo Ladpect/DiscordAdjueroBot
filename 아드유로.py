@@ -36,6 +36,7 @@ async def on_message(message):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터", inline=False)
+        embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
         
@@ -44,7 +45,7 @@ async def on_message(message):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, test", inline=False)
-        embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), 추가 예정", inline=False)
+        embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), DM (유저ID) (할말)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
    
@@ -76,6 +77,12 @@ async def on_message(message):
         channel = message.content[10:29] #채널 아이디는 18자, ?번째 글자와 ?번째 글자 사이에 그거 
         msg = message.content[29:] #할말 보내는거
         await client.get_channel(int(channel)).send(msg) #채널 그게 정수값으로 해서 그채널 보내게 함
+        
+    if message.content.startswith("아듀로 DM"):
+        author = message.guild.get_member(int(message.content[7:26])) #유저 아이디
+        msg = message.content[26:] #유저에게 할말
+        await author.send(msg)
+
         
         
 access_token = os.environ["BOT_TOKEN"]

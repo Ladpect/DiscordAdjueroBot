@@ -63,6 +63,11 @@ async def on_message(message):
         embed.set_footer(text="나는 그냥 햄스터다 인간들아")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
         
+    if message.content.startswith("아듀로 채널 확성기"):
+        channel = message.content[12:29] #채널 아이디는 18자
+        msg = message.content[31:] #할말 보내는거
+        await client.get_channel(int(channel)).send(msg) #채널 그게 정수값으로 해서 그채널 보내게 함
+        
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

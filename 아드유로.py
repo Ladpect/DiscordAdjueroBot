@@ -1,5 +1,6 @@
 import discord, asyncio
-token = "Njg1ODA2NDQwMjI0NjUzMzQx.XmOX8Q.wX2eVWuzEmW1gPx2mLeM44UdAJY"
+import os
+
 client = discord.Client() #긴거 대신함
 
 @client.event
@@ -61,5 +62,7 @@ async def on_message(message):
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/685874094411087988/hamster.jpg")
         embed.set_footer(text="나는 그냥 햄스터다 인간들아")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
-
-client.run("Njg1ODA2NDQwMjI0NjUzMzQx.XmOX8Q.wX2eVWuzEmW1gPx2mLeM44UdAJY")
+        
+        
+access_token = os.environ["BOT_TOKEN"]
+client.run(access_token)

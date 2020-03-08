@@ -35,7 +35,7 @@ async def on_message(message):
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
-        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터", inline=False)
+        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, ", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
@@ -45,7 +45,7 @@ async def on_message(message):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="관리", value="뮤트죄수(임명/해제) (유저ID)", inline=False)
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
-        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, test", inline=False)
+        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 둘기이마트", inline=False)
         embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), DM (유저ID) (할말)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
@@ -72,6 +72,12 @@ async def on_message(message):
         embed = discord.Embed(title="햄스터?", description="정체불명", color=0x4641D9)
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/685874094411087988/hamster.jpg")
         embed.set_footer(text="나는 그냥 햄스터다 인간들아")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+        
+    if message.content == "아듀로 둘기이마트":
+        embed = discord.Embed(title="둘기는 이마트를 좋아해", description="난나난나나나나", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/686185101700104215/KakaoTalk_20200308_200354653.jpg")
+        embed.set_footer(text="이마트는 둘기를 싫어합니다")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
         
     if message.content.startswith("아듀로 채널확성기"):

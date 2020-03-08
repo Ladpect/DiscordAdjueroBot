@@ -65,7 +65,7 @@ async def on_message(message):
         
     if message.content.startswith("아듀로 채널확성기"):
         channel = message.content[10:29] #채널 아이디는 18자, ?번째 글자와 ?번째 글자 사이에 그거 
-        msg = message.content[30:] #할말 보내는거
+        msg = message.content[29:] #할말 보내는거
         await client.get_channel(int(channel)).send(msg) #채널 그게 정수값으로 해서 그채널 보내게 함
         
         

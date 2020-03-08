@@ -31,7 +31,7 @@ async def on_message(message):
     if message.content == "아듀로 고마워":
         await message.channel.send("당신의 칭찬에 찬사를!")
         
-        if message.content == "아듀로 도움":
+    if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
@@ -39,7 +39,7 @@ async def on_message(message):
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
         
-        if message.content == "아듀로 도움pro":
+    if message.content == "아듀로 도움pro":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)

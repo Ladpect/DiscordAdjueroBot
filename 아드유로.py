@@ -34,8 +34,8 @@ async def on_message(message):
     if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어", inline=False)
-        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, ", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간", inline=False)
+        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
@@ -44,8 +44,8 @@ async def on_message(message):
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="관리", value="뮤트죄수(임명/해제) (유저ID)", inline=False)
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어", inline=False)
-        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 둘기이마트", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간", inline=False)
+        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 둘기이마트, ", inline=False)
         embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), DM (유저ID) (할말)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
@@ -111,6 +111,25 @@ async def on_message(message):
 
     if message.content == "아듀로 잘했어":
         await message.channel.send("yeah! dude, THX")
+        
+     if message.content == "아듀로 프로필":
+        date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
+        embed = discord.Embed(color=0x4641D9)
+        embed.add_field(name="이름", value=message.author.name, inline=True)
+        embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
+        embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
+        embed.set_thumbnail(url=message.author.avatar_url)
+        await message.channel.send(embed=embed)
+
+    
+    if message.content == "아듀로 시간":
+        a = datetime.datetime.today().year
+        b = datetime.datetime.today().month
+        c = datetime.datetime.today().day
+        d = datetime.datetime.today().hour
+        e = datetime.datetime.today().minute
+        await client.send_message(message.channel, "지금의 시간은" + str(a) + "년" + str(b) + "월" + str(c) + "일" + str(d) + "시" + str(e) + "분 입니다"
+
 
         
         

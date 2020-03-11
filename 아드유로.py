@@ -1,4 +1,4 @@
-import discord, asyncio
+import discord, asyncio, random, datetime
 import os
 
 client = discord.Client() #긴거 대신함

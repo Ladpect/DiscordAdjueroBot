@@ -103,6 +103,11 @@ async def on_message(message):
     if message.content.startswith("아듀로 따라해"):
         msg = message.content[8:] #할말 보내는거
         await message.channel.send(msg) #할말 보내는거
+        
+    if message.content.startswith("아듀로 주사위"):
+        num = message.content[8:]
+        op = random.randint(0, int(num))
+        await message.channel.send(op)
 
 
 

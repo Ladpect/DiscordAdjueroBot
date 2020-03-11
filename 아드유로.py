@@ -34,7 +34,7 @@ async def on_message(message):
     if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말)", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, ", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
@@ -44,7 +44,7 @@ async def on_message(message):
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="관리", value="뮤트죄수(임명/해제) (유저ID)", inline=False)
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 심영, 정체, 안녕", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말)", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 둘기이마트", inline=False)
         embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), DM (유저ID) (할말)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
@@ -99,6 +99,11 @@ async def on_message(message):
         author = message.guild.get_member(int(message.content[11:30])) #유저 아이디
         role = discord.utils.get(message.guild.roles, name="죄수") #죄수 변수 찾아라
         await author.remove_roles(role)#죄수 해제
+        
+    if message.content.startswith("아듀로 따라해"):
+        msg = message.content[8:] #할말 보내는거
+        await message.channel.send(msg) #할말 보내는거
+
 
 
         

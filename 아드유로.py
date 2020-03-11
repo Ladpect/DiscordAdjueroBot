@@ -34,7 +34,7 @@ async def on_message(message):
     if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), ", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, ", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
@@ -110,7 +110,7 @@ async def on_message(message):
         await message.channel.send(op)
 
     if message.content == "아듀로 잘했어":
-        await message.channel.send("yeah! dude.")
+        await message.channel.send("yeah! dude, THX")
 
         
         

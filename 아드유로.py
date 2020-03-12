@@ -112,7 +112,7 @@ async def on_message(message):
     if message.content == "아듀로 잘했어":
         await message.channel.send("yeah! dude, THX")
         
-     if message.content == "아듀로 프로필":
+    if message.content == "아듀로 프로필":
         date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
         embed = discord.Embed(color=0x4641D9)
         embed.add_field(name="이름", value=message.author.name, inline=True)

@@ -188,7 +188,7 @@ async def on_message(message):
         embed.add_field(name="배리어/배리어 충전량", value="135/15", inline=True)
         embed.add_field(name="원뚝여부", value="X", inline=True)
         embed.add_field(name="스킬", value="스킬을 쓰면 8초간 방패를 들며 총알을 막는다.(단, 적군의 스킬은 막을 수 없다), 방패를 들면 이동속도가 느려지며 총을 바꿀 수 없다.", inline=False)
-        embed.add_field(name="부가사항" value="스킬을 공중에서 쓰면 잠깐 공중에서 멈추었다가 아주 빠르게 떨어진다. 이것을 응용하면 잔기술을 만들 수 있다.", inline=False)
+        embed.add_field(name="부가사항", value="스킬을 공중에서 쓰면 잠깐 공중에서 멈추었다가 아주 빠르게 떨어진다. 이것을 응용하면 잔기술을 만들 수 있다.", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/687634144347422745/7c0b2093df6cb7fb.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")
         await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)

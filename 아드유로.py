@@ -158,7 +158,7 @@ async def on_message(message):
         embed.add_field(name="체력", value="210", inline=True)
         embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
         embed.add_field(name="원뚝여부", value="신스나(S) 이상의 데미지", inline=True)
-        embed.add_field(name="스킬", value="아군 1명의 체력을 90회복한다. 시체가 터지지 않은 팀원을 90체력으로 부활, 잠시동안 무적상태 부여, 부활한 아군 데스기록제거를 할 수 있다. 그리고 스킬 시전시 자신의 체력 30회복한다.", inline=True)
+        embed.add_field(name="스킬", value="아군 1명의 체력을 90회복한다. 시체가 터지지 않은 팀원을 90체력으로 부활, 잠시동안 무적상태 부여, 부활한 아군 데스기록제거를 할 수 있다. 그리고 스킬 시전시 자신의 체력 30회복한다.", inline=False)
         embed.add_field(name="배틀로얄", value="스킬 사용불가로 인해 회복템 사용속도가 감소한다.", inline=True)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/687634142053269570/741a1317414241ce.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")

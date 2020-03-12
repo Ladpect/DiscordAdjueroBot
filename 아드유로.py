@@ -128,7 +128,7 @@ async def on_message(message):
         c = datetime.datetime.today().day
         d = datetime.datetime.today().hour
         e = datetime.datetime.today().minute
-        await message.channel.send("지금의 시간은 " + str(a) + "년" + str(b) + "월" + str(c) + "일" + str(d) + "시" + str(e) + "분 입니다")
+        await message.channel.send("지금의 시간은 " + str(a) + "년 " + str(b) + "월 " + str(c) + "일 " + str(d) + "시 " + str(e) + "분 입니다")
 
 
         

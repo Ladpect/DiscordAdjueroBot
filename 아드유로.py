@@ -37,6 +37,7 @@ async def on_message(message):
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
+        embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
         
@@ -47,6 +48,7 @@ async def on_message(message):
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 둘기이마트, ", inline=False)
         embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), DM (유저ID) (할말)", inline=False)
+        embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
    

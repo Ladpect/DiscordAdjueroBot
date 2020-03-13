@@ -34,7 +34,7 @@ async def on_message(message):
     if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
@@ -45,12 +45,21 @@ async def on_message(message):
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="관리", value="뮤트죄수(임명/해제) (유저ID)", inline=False)
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 둘기이마트, ", inline=False)
         embed.add_field(name="기타", value="채널확성기 (채널ID) (할말), DM (유저ID) (할말)", inline=False)
         embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
+        
+    
+    if message.content == "아듀로 나 어때?":
+        embed = discord.Embed(title="관심법", description="그는 김두한의 또다른 인격체라 카더라", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688029161956311060/2.jpg")
+        embed.set_footer(text="금부장?")
+        await message.channel.send("내가 관심법으로 가만히 보아하니...", embed=embed)
+        await asyncio.sleep(4)
+        await message.channel.send("네놈 머리속엔 마구니가 가득차있어")
    
     if message.content == "아듀로 김두한":
         embed = discord.Embed(title="김두한.", description="1972의 사나이", color=0x4641D9)

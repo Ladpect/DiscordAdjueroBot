@@ -114,6 +114,9 @@ async def on_message(message):
     if message.content == "아듀로 잘했어":
         await message.channel.send("yeah! dude, THX")
         
+    if message.content.startswith("@everyone"):
+        await message.channel.send("그런건 진짜 가끔만 쓰자 친구야")
+        
     if message.content == "아듀로 프로필":
         date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
         embed = discord.Embed(color=0x4641D9)
@@ -202,6 +205,37 @@ async def on_message(message):
         embed.add_field(name="원뚝여부", value="알디 이상의 데미지", inline=True)
         embed.add_field(name="스킬", value="스킬을 쓰고 특정 위치에 에임을 갖다대면 그곳으로 순간이동한다. (단, 무조건 바닥에 에임을 갖다대야한다. 벽 or 천장에 할 시 스킬이 발동이 안된다.)", inline=True)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/687634071039639587/82eb70e95996fb6b.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+        
+    if message.content.startswith("아듀로 밀초 런쳐"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 런쳐", description="북쪽의 김동지를 보는 듯 하다.", color=0x4641D9)
+        embed.add_field(name="체력", value="250", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="X", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰면 에임이 있는 부분에 광역 공격을 한다. 스킬 시전 하기전에 약 3초의 딜레이가 있다. 최소 데미지는 50이며 데미지는 220대 초반까지 들어간다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688011394955739146/6d760227c908d2fa.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 인비"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 인비", description="이 아이는 on/off 가능합니다", color=0x4641D9)
+        embed.add_field(name="체력", value="165", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="에땁 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰면 잠깐의 딜레이 후 8초간 은신상태가 된다. 이때 공격(수류탄 투척 포함)을 하면 은신이 풀리며 은신상태에서 근접무기로 상대공격시 데미지가 50% 더 들어간다.", inline=True)
+        embed.add_field(name="유의사항", value="리콘 스킬, 캐로그 포탑이 적군에게 존재한다면 인비가 은신을 써도 적군에게는 인비가 보인다.", inline=False)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688011390119837713/b369e79c7587b9b7.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 후크"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 후크", description="준비됐나요? 네, 네, 선장님!", color=0x4641D9)
+        embed.add_field(name="체력", value="190", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="40/7", inline=True)
+        embed.add_field(name="원뚝여부", value="신샷", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰고 파란에임이 되었을때 적군에게 에임을 갖다대면 적군이 끌려온다. 이때 스킬 적용시 50데미지를 입히며 끌려오다 구조물에 걸릴시 더이상 끌려오지 않는다. 그리고 끌어올 수 있는 최대 거리는 확인 결과 약 32m 까지다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688011393026359300/d3513a9979172c1b.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")
         await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
 

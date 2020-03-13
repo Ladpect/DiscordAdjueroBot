@@ -137,7 +137,7 @@ async def on_message(message):
 
     if message.content == "아듀로 밀초 도움":
         embed = discord.Embed(title="아듀로 봇의 밀초 정보 저장소", description="영웅들과 총 정보 등등 많은 정보를 제공합니다", color=0x4641D9)
-        embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, (추가 예정)", inline=False)
+        embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, 런쳐, 인비, 후크, (추가 예정)", inline=False)
         embed.add_field(name="총기", value="(유저들이 주로 쓰는 총으로 추가 예정(캐릭터 기입 완료시))", inline=False)
         embed.add_field(name="유의사항 1", value="1.정보가 맞지 않을 수 있습니다.", inline=False)
         embed.add_field(name="유의사항 2", value="2.원뚝여부에 총기 옆에 '(S)'가 있다면 리콘, 에어, 스위니의 스킬사용중 스나뎀 10퍼 추가일시에 그렇다는 겁니다.", inline=False)

@@ -146,7 +146,7 @@ async def on_message(message):
 
     if message.content == "아듀로 밀초 도움":
         embed = discord.Embed(title="아듀로 봇의 밀초 정보 저장소", description="영웅들과 총 정보 등등 많은 정보를 제공합니다", color=0x4641D9)
-        embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, 런쳐, 인비, 후크, (추가 예정)", inline=False)
+        embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, 런쳐, 인비, 후크, 미오캣, 데페, 아이언, (추가 예정)", inline=False)
         embed.add_field(name="총기", value="(유저들이 주로 쓰는 총으로 추가 예정(캐릭터 기입 완료시))", inline=False)
         embed.add_field(name="유의사항 1", value="1.정보가 맞지 않을 수 있습니다.", inline=False)
         embed.add_field(name="유의사항 2", value="2.원뚝여부에 총기 옆에 '(S)'가 있다면 리콘, 에어, 스위니의 스킬사용중 스나뎀 10퍼 추가일시에 그렇다는 겁니다.", inline=False)
@@ -245,6 +245,37 @@ async def on_message(message):
         embed.add_field(name="원뚝여부", value="신샷", inline=True)
         embed.add_field(name="스킬", value="스킬을 쓰고 파란에임이 되었을때 적군에게 에임을 갖다대면 적군이 끌려온다. 이때 스킬 적용시 50데미지를 입히며 끌려오다 구조물에 걸릴시 더이상 끌려오지 않는다. 그리고 끌어올 수 있는 최대 거리는 확인 결과 약 32m 까지다.", inline=True)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688011393026359300/d3513a9979172c1b.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+        
+    if message.content.startswith("아듀로 밀초 미오캣"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 미오캣", description="냥냥군단의 근원지.", color=0x4641D9)
+        embed.add_field(name="체력", value="185", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="신스나 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬 사용시 돌진하며 이때 적군과 부딫히면 130데미지를 입힌다. 돌진거리는 총의 무게에 비례하며 100% 기준 돌진거리는 약 24m 이다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688281235222560779/399ded0af0cef27c.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 아이언"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 아이언", description="디즈니에서 소송걸어도 할 말 없다", color=0x4641D9)
+        embed.add_field(name="체력", value="180", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="90/18", inline=True)
+        embed.add_field(name="원뚝여부", value="X", inline=True)
+        embed.add_field(name="스킬", value="스킬 사용시 5초간 받는 데미지를 30%만 받는다. 이때 총 사용, 수류탄, 점프가 가능하다", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688281237751595057/c0c18f37b9cbb53d.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 데페"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 데페", description="아 대패삽겹살 먹고싶다.", color=0x4641D9)
+        embed.add_field(name="체력", value="190", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="40/7", inline=True)
+        embed.add_field(name="원뚝여부", value="신샷", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰면 약 3초간의 딜레이 후 스킬을 시전, 타겟팅이 된 적군(들)에게 총합 500데미지를 준다. 데미지 분배는 랜덤이며 대부분 5의 배수이다.", inline=True)
+        embed.add_field(name="유의사항", value="스킬 시전 중(딜레이 중) 사망시 스킬은 취소된다.", inline=False)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/688281239261937664/0f3e7019db08410e.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")
         await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
 

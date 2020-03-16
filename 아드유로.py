@@ -35,7 +35,7 @@ async def on_message(message):
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?", inline=False)
-        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트", inline=False)
+        embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트, 김치싸대기, 김치수거, 비프로스트, 이건 좀 아닌듯, 변신, ㅌㅌ, 박수, 충격, 처형, 토마스", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 추가 예정", inline=False)
         embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
@@ -89,6 +89,78 @@ async def on_message(message):
         embed = discord.Embed(title="둘기는 이마트를 좋아해", description="난나난나나나나", color=0x4641D9)
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/686185101700104215/KakaoTalk_20200308_200354653.jpg")
         embed.set_footer(text="이마트는 둘기를 싫어합니다")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+        
+    if message.content == "아듀로 김치수거":
+        embed = discord.Embed(title="김치수거중", description="내 아까운 김치", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311211783356426/a8300e3efe453a83.gif")
+        embed.set_footer(text="김치를 아끼자.")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 김치싸대기":
+        embed = discord.Embed(title="예끼 이놈", description="김치워리어", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311226354237477/068b27a2f06240e8.gif")
+        embed.set_footer(text="김치워리어 운다")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 이건 좀 아닌듯":
+        embed = discord.Embed(title="김동지", description="이건 좀...", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311196884926464/036320e13456ba4a.gif")
+        embed.set_footer(text="쓰읍")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 비프로스트":
+        embed = discord.Embed(title="휴대용입니다.", description="접속이다", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311195068923942/8695d6e35b46b6df.gif")
+        embed.set_footer(text="시공의 폭ㅍ...")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 변신":
+        embed = discord.Embed(title="짜잔!", description="난 이제 달라.", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311202497298436/9d89fa7a4cb65379.gif")
+        embed.set_footer(text="양자중첩상태.")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 ㅌㅌ":
+        embed = discord.Embed(title="모두 다음에 만나요", description="사라짐", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311120640999425/1583662278990.gif")
+        embed.set_footer(text="잘가")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 던져":
+        embed = discord.Embed(title="throw away", description="던질까 말까", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311118967734285/1583592857865.gif")
+        embed.set_footer(text="찌리찌리 짜라짜라")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 박수":
+        embed = discord.Embed(title="짝짝짝", description="와아아아아아아아", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311243890622464/f2e28e1276d65f5f.gif")
+        embed.set_footer(text="이 다음 장면은 누가 나올까요?")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 충격":
+        embed = discord.Embed(title="주르륵", description="뭐라고?", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311242573742167/b5562f1645977f2a.gif")
+        embed.set_footer(text="오렌지 쥬스 아깝다")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 처형":
+        embed = discord.Embed(title="석양이 진다", description="탕탕탕", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311714239873026/1544234146072.gif")
+        embed.set_footer(text="무한 총알인거임ㅋㅋㅋㅋ")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 시공":
+        embed = discord.Embed(title="시공의 폭풍은 정말 최고야!", description="히오스", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311711677415424/1535025935602.gif")
+        embed.set_footer(text="히오스는 최고가 맞습니다. 맞다고요")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 토마스":
+        embed = discord.Embed(title="돌진조아", description="돌진의 대가", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/689005281400848421/KakaoTalk_20200316_130958972.jpg")
+        embed.set_footer(text="빠밤빠빠-빠빠빰 빠밤빠빰-빠라빰-빠빠라-빠라빠라빠라")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
         
     if message.content.startswith("아듀로 채널확성기"):

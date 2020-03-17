@@ -1,5 +1,7 @@
 import discord, asyncio, random, datetime
 import os
+import urllib, bs4, request
+from bs4 import BeautifulSoup
 
 client = discord.Client() #긴거 대신함
 
@@ -162,6 +164,32 @@ async def on_message(message):
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/689005281400848421/KakaoTalk_20200316_130958972.jpg")
         embed.set_footer(text="빠밤빠빠-빠빠빰 빠밤빠빰-빠라빰-빠빠라-빠라빠라빠라")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
+        
+    if message.content == "아듀로 고양이":
+        embed = discord.Embed(
+            title="야옹",
+            description="냥냥파는 승리한다",
+            color=0x4641D9
+        )
+
+        urlBase = 'https://loremflickr.com/320/240?lock='
+        randomN = random.randrange(1, 30977)
+        urlF = urlBase + str(randomN)
+        embed.set_image(url = urlF)
+        await message.channel.send(embed=embed)
+
+    if message.content == "아듀로 강아지":
+        embed = discord.Embed(
+            title="멍멍",
+            description="뭉멍파는 승리한다",
+            color=0x4641D9
+        )
+
+        urlBase = 'https://loremflickr.com/320/240/dog?lock='
+        randomN = random.randrange(1, 30977)
+        urlF = urlBase + str(randomN)
+        embed.set_image(url = urlF)
+        await message.channel.send(embed=embed)
         
     if message.content.startswith("아듀로 채널확성기"):
         channel = message.content[10:29] #채널 아이디는 18자, ?번째 글자와 ?번째 글자 사이에 그거 

@@ -282,7 +282,7 @@ async def on_message(message):
         embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, 런쳐, 인비, 후크, 미오캣, 데페, 아이언, (추가 예정)", inline=False)
         embed.add_field(name="총기", value="(유저들이 주로 쓰는 총으로 추가 예정(캐릭터 기입 완료시))", inline=False)
         embed.add_field(name="유의사항 1", value="1.정보가 맞지 않을 수 있습니다.", inline=False)
-        embed.add_field(name="유의사항 2", value="2.원뚝여부에 총기 옆에 '(S)'가 있다면 리콘, 에어, 스위니의 스킬사용중 스나뎀 10퍼 추가일시에 그렇다는 겁니다.", inline=False)
+        embed.add_field(name="유의사항 2", value="2.원뚝여부에 총기 옆에 '(S)'가 있다면 리콘, 에어의 스킬사용중 스나뎀 10퍼 추가일시에 그렇다는 겁니다.", inline=False)
         embed.add_field(name="원뚝여부 (최대뎀 기준 (원래뎀)/(스킬추가뎀), (샷건최대뎀)", value="에땁 168/184, 알디 173/190 스피라 184/202 신스나 193/212 클샷 220 신샷 230", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.set_footer(text="아듀로 봇의 존재이유.")

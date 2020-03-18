@@ -36,7 +36,7 @@ async def on_message(message):
     if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?, 레니(랜덤 이모티콘)", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?, 레니(랜덤 이모티콘), 포나춤, 샌즈", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트, 김치싸대기, 김치수거, 비프로스트, 이건 좀 아닌듯, 변신, ㅌㅌ, 박수, 충격, 처형, 토마스, 고양이(랜덤), 강아지(랜덤)", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 에너지(E = mc^2), 추가 예정", inline=False)
         embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
@@ -184,6 +184,18 @@ async def on_message(message):
         embed = discord.Embed(title="돌진조아", description="돌진의 대가", color=0x4641D9)
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/689005281400848421/KakaoTalk_20200316_130958972.jpg")
         embed.set_footer(text="빠밤빠빠-빠빠빰 빠밤빠빰-빠라빰-빠빠라-빠라빠라빠라")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+        
+    if message.content == "아듀로 포나춤":
+        embed = discord.Embed(title="F.O.R.T.N.I.T.E", description="D.E.F.A.U.L.T D.A.N.C.E", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/689719145855844382/1328177857dfa41ab6bb71bf3166f42e.gif")
+        embed.set_footer(text="WOW")
+        await message.channel.send("아듀로 이미지 서비스", embed=embed)
+
+    if message.content == "아듀로 샌즈":
+        embed = discord.Embed(title="WA! SANS!", description="참고로 이거 겁.나.어.렵.습.니.다", color=0x4641D9)
+        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/689720396345638941/1537569816_hqx7okmi64c11.gif")
+        embed.set_footer(text="(SANS LAUGH)")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
         
     if message.content == "아듀로 고양이":

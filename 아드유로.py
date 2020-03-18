@@ -36,7 +36,7 @@ async def on_message(message):
     if message.content == "아듀로 도움":
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)'야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?", inline=False)
+        embed.add_field(name="대화", value="고마워, 뭐라도 해봐, 정체, 안녕, 따라해 (할말), 주사위 (숫자), 잘했어, 시간, 나 어때?, 레니(랜덤 이모티콘)", inline=False)
         embed.add_field(name="이미지", value="김두한, 물리치료사, 심영, 햄스터, 프로필, 둘기이마트, 김치싸대기, 김치수거, 비프로스트, 이건 좀 아닌듯, 변신, ㅌㅌ, 박수, 충격, 처형, 토마스, 고양이(랜덤), 강아지(랜덤)", inline=False)
         embed.add_field(name="기타", value="DM (유저ID) (할말), 에너지(E = mc^2), 추가 예정", inline=False)
         embed.add_field(name="밀크초코 온라인", value="밀초 도움", inline=False)
@@ -73,6 +73,16 @@ async def on_message(message):
         embed.add_field(name="m", value=m, inline=False)
         embed.add_field(name="결과", value=int(299792458 ** 2 * int(m)), inline=False)
         await message.channel.send(embed=embed)
+        
+    if message.content.startswith("아듀로 레니"):
+        Lenny = ["( ͡° ͜ʖ ͡°)", "( ͠° ͟ʖ ͡°)", "( ͡~ ͜ʖ ͡°)", "( ͡ʘ ͜ʖ ͡ʘ)", "( ͡o ͜ʖ ͡o)", "(° ͜ʖ °)", "( ‾ʖ̫‾)", 
+        "( ಠ ͜ʖಠ)", "( ͡° ʖ̯ ͡°)", "( ͡ಥ ͜ʖ ͡ಥ)", "༼  ͡° ͜ʖ ͡° ༽", "(▀̿Ĺ̯▀̿ ̿)", "( ✧≖ ͜ʖ≖)", "(ง ͠° ͟ل͜ ͡°)ง", 
+        "(͡ ͡° ͜ つ ͡͡°)", "[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]", "(✿❦ ͜ʖ ❦)", "ᕦ( ͡° ͜ʖ ͡°)ᕤ", "( ͡° ͜ʖ ͡°)╭∩╮", 
+        "(╯ ͠° ͟ʖ ͡°)╯┻━┻", "( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)", "ಠ_ಠ"]
+        r = random.randrange(0, len(Lenny))
+        print("랜덤수 값 :" + str(r))
+        print(Lenny[r])
+        await message.channel.send(embed=discord.Embed(description=Lenny[r]))
    
     if message.content == "아듀로 김두한":
         embed = discord.Embed(title="김두한.", description="1972의 사나이", color=0x4641D9)

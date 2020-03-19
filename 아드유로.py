@@ -199,30 +199,32 @@ async def on_message(message):
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
         
     if message.content == "아듀로 고양이":
-        embed = discord.Embed(
-            title="야옹",
-            description="냥냥파는 승리한다",
-            color=0x4641D9
+        await message.channel.send("현재 이 명령어를 사용할 수 없습니다. 이상한 사진이 나오던 문제를 해결할 시 다시 재가동 시킬 예정입니다.")
+        #embed = discord.Embed(
+            #title="야옹",
+            #description="냥냥파는 승리한다",
+            #color=0x4641D9
         )
 
-        urlBase = 'https://loremflickr.com/320/240?lock='
-        randomN = random.randrange(1, 30977)
-        urlF = urlBase + str(randomN)
-        embed.set_image(url = urlF)
-        await message.channel.send(embed=embed)
+        #urlBase = 'https://loremflickr.com/320/240?lock='
+        #randomN = random.randrange(1, 30977)
+        #urlF = urlBase + str(randomN)
+        #embed.set_image(url = urlF)
+        #await message.channel.send(embed=embed)
 
     if message.content == "아듀로 강아지":
-        embed = discord.Embed(
-            title="멍멍",
-            description="뭉멍파는 승리한다",
-            color=0x4641D9
+        await message.channel.send("현재 이 명령어를 사용할 수 없습니다. 이상한 사진이 나오던 문제를 해결할 시 다시 재가동 시킬 예정입니다.")
+        #embed = discord.Embed(
+            #title="멍멍",
+            #description="뭉멍파는 승리한다",
+            #color=0x4641D9
         )
 
-        urlBase = 'https://loremflickr.com/320/240/dog?lock='
-        randomN = random.randrange(1, 30977)
-        urlF = urlBase + str(randomN)
-        embed.set_image(url = urlF)
-        await message.channel.send(embed=embed)
+        #urlBase = 'https://loremflickr.com/320/240/dog?lock='
+        #randomN = random.randrange(1, 30977)
+        #urlF = urlBase + str(randomN)
+        #embed.set_image(url = urlF)
+        #await message.channel.send(embed=embed)
         
     if message.content.startswith("아듀로 채널확성기"):
         channel = message.content[10:29] #채널 아이디는 18자, ?번째 글자와 ?번째 글자 사이에 그거 

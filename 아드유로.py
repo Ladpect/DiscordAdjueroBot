@@ -204,7 +204,7 @@ async def on_message(message):
             #title="야옹",
             #description="냥냥파는 승리한다",
             #color=0x4641D9
-        )
+        #)
 
         #urlBase = 'https://loremflickr.com/320/240?lock='
         #randomN = random.randrange(1, 30977)
@@ -218,7 +218,7 @@ async def on_message(message):
             #title="멍멍",
             #description="뭉멍파는 승리한다",
             #color=0x4641D9
-        )
+        #)
 
         #urlBase = 'https://loremflickr.com/320/240/dog?lock='
         #randomN = random.randrange(1, 30977)

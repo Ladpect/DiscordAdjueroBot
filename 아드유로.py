@@ -281,7 +281,7 @@ async def on_message(message):
 
     if message.content == "아듀로 밀초 도움":
         embed = discord.Embed(title="아듀로 봇의 밀초 정보 저장소", description="영웅들과 총 정보 등등 많은 정보를 제공합니다", color=0x4641D9)
-        embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, 런쳐, 인비, 후크, 미오캣, 데페, 아이언, (추가 예정)", inline=False)
+        embed.add_field(name="캐릭터", value="어썰트, 메딕, 바머, 리콘, 고스트, 쉴드, 런쳐, 인비, 후크, 미오캣, 데페, 아이언, 캐로그, 크리미, 휠레그, 에어, 일렉트릭, 블레이드, 스위니, 마고", inline=False)
         embed.add_field(name="총기", value="(유저들이 주로 쓰는 총으로 추가 예정(캐릭터 기입 완료시))", inline=False)
         embed.add_field(name="유의사항 1", value="1.정보가 맞지 않을 수 있습니다.", inline=False)
         embed.add_field(name="유의사항 2", value="2.원뚝여부에 총기 옆에 '(S)'가 있다면 리콘, 에어의 스킬사용중 스나뎀 10퍼 추가일시에 그렇다는 겁니다.", inline=False)
@@ -414,7 +414,88 @@ async def on_message(message):
         embed.set_footer(text="아듀로 봇의 존재이유.")
         await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
 
-        
+    if message.content.startswith("아듀로 밀초 크리미"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 크리미", description="처음 나올때 얘 이름 푸푸였다", color=0x4641D9)
+        embed.add_field(name="체력", value="185", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="신스나 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬 사용시 적군에겐 보이지 않는 지뢰를 설치하며 적군이 밟을시 80데미지가 들어간다. 이 지뢰는 80체력이며 수류탄, 총(리콘 스킬로 드러났을 경우)로 제거 가능하다", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973327421571142/04a0b43509f93c4c.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 캐로그"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 캐로그", description="캐로그 5인큐 만나면 진짜 무섭다", color=0x4641D9)
+        embed.add_field(name="체력", value="155", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="65/29", inline=True)
+        embed.add_field(name="원뚝여부", value="클샷 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬을 사용하면 잠깐의 딜레이 후 적을 공격하는 포탑을 설치한다. 0.5초마다 9데미지를 주며 인비의 은신을 감지할 수 있다", inline=False)
+        embed.add_field(name="유의사항", value="사망 중에는 포탑이 아무것도 하지 않으며 일정시간이 지나면 사라지며, 포탑이 있는 상태로 스킬을 쓰면 기존 포탑이 사라지고 스킬을 쓴곳에 포탑이 설치된다.", inline=False)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973325697581056/d177c0504ce48078.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 휠레그"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 휠레그", description="I'm so fast f**k boiiii", color=0x4641D9)
+        embed.add_field(name="체력", value="190", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="알디(S) 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬을 사용할 시 속도가 빨라지며 약 60% 정도 빨라지며 6초 지속된다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973311214911519/67656ca552613712.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 에어"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 에어", description="눈 덮인 숲속 마을 꼬마 펭귄 나가신다", color=0x4641D9)
+        embed.add_field(name="체력", value="180", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="스피라 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬을 사용할 시 그 자리에서 높게 점프하며 높이는 약 12m 정도 된다. 스킬을 쓰고 공중에서 스나로 공격하면 데미지가 10퍼센트 추가로 들어간다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973322954768414/919dde290529189d.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 블레이드"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 블레이드", description="칼 하나로 쓱싹 하는 벌레", color=0x4641D9)
+        embed.add_field(name="체력", value="165", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="에땁", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰면 에임 방향으로 12m 돌진하며 적군에 맞으면 적군은 200데미지를 입는다. 스킬로 적군이 죽으면 스킬을 바로 또 쓸 수 있다.(돌진 거리는 총 무게에 비례한다.)", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973319888470016/e589eb34d9b03bea.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 마고"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 마고", description="샤머니즘 그 자체", color=0x4641D9)
+        embed.add_field(name="체력", value="165", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="에땁", inline=True)
+        embed.add_field(name="스킬", value="스킬이 다 차면 두 상태가 번갈아 가면서 바뀐다. 타이밍 맞게 누르면 발동된다.", inline=False)
+        embed.add_field(name="스킬(버프)", value="반경 3m 범위 안에 초록색 마법진이 생기며 초당 35 체력을 회복시킨다.", inline=True)
+        embed.add_field(name="스킬(디버프)", value="반경 6m 범위 안에 적색 마법진이 생기며 적군의 이속을 약 50% 감소시킨다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973086651744286/78587f88a293c334.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 일렉트릭"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 일렉트릭", description="번쩍번쩍 번개따라 찌리찌리 짜라짜라", color=0x4641D9)
+        embed.add_field(name="체력", value="145", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="55/24", inline=True)
+        embed.add_field(name="원뚝여부", value="알디(S) 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰고 적군에게 에임을 갖다대면 적군은 감전 상태가 되며 공격 불능, 배리어 삭제 디버프를 먹는다. 지속시간은 4초이며 스킬 적중시 1데미지가 들어간다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973324129173544/f89736c26cf2c27a.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+
+    if message.content.startswith("아듀로 밀초 스위니"):
+        embed = discord.Embed(title="밀초 캐릭터 정보 : 스위니", description="동해번쩍 서해번쩍", color=0x4641D9)
+        embed.add_field(name="체력", value="175", inline=True)
+        embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
+        embed.add_field(name="원뚝여부", value="스피라 이상의 데미지", inline=True)
+        embed.add_field(name="스킬", value="스킬을 쓰면 당근을 던지고 일정 시간안에 스킬 버튼을 다시 누르면 당근이 있는 자리로 순간이동 한다.", inline=True)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973322296131654/c23e921847396022.png")
+        embed.set_footer(text="아듀로 봇의 존재이유.")
+        await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

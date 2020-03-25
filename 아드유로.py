@@ -17,7 +17,7 @@ async def on_message(message):
     if message.author.bot: #채팅친 놈이 봇이면 구문 종료
         return None
 
-    if message.content in["아듀로 안녕", "ad안녕"]:
+    if message.content in ["아듀로 안녕", "ad안녕"]:
         await message.channel.send("안녕")
         #channel을 author로 바꾸면 DM으로 감
 

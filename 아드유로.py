@@ -108,7 +108,7 @@ async def on_message(message):
         embed.set_footer(text="이마트는 둘기를 싫어합니다")
         await message.channel.send("아듀로 이미지 서비스", embed=embed)
         
-    if message.content in ["아듀로 김치수거", "ad김치수거]:
+    if message.content in ["아듀로 김치수거", "ad김치수거"]:
         embed = discord.Embed(title="김치수거중", description="내 아까운 김치", color=0x4641D9)
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311211783356426/a8300e3efe453a83.gif")
         embed.set_footer(text="김치를 아끼자.")

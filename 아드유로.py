@@ -459,7 +459,7 @@ async def on_message(message):
         embed = discord.Embed(title="밀초 캐릭터 정보 : 블레이드", description="칼 하나로 쓱싹 하는 벌레", color=0x4641D9)
         embed.add_field(name="체력", value="165", inline=True)
         embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
-        embed.add_field(name="원뚝여부", value="에땁", inline=True)
+        embed.add_field(name="원뚝여부", value="에땁 이상의 ", inline=True)
         embed.add_field(name="스킬", value="스킬을 쓰면 에임 방향으로 12m 돌진하며 적군에 맞으면 적군은 200데미지를 입는다. 스킬로 적군이 죽으면 스킬을 바로 또 쓸 수 있다.(돌진 거리는 총 무게에 비례한다.)", inline=True)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973319888470016/e589eb34d9b03bea.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")
@@ -469,7 +469,7 @@ async def on_message(message):
         embed = discord.Embed(title="밀초 캐릭터 정보 : 마고", description="샤머니즘 그 자체", color=0x4641D9)
         embed.add_field(name="체력", value="165", inline=True)
         embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
-        embed.add_field(name="원뚝여부", value="에땁", inline=True)
+        embed.add_field(name="원뚝여부", value="에땁 이상의 데미지", inline=True)
         embed.add_field(name="스킬", value="스킬이 다 차면 두 상태가 번갈아 가면서 바뀐다. 타이밍 맞게 누르면 발동된다.", inline=False)
         embed.add_field(name="스킬(버프)", value="반경 3m 범위 안에 초록색 마법진이 생기며 초당 35 체력을 회복시킨다.", inline=True)
         embed.add_field(name="스킬(디버프)", value="반경 6m 범위 안에 적색 마법진이 생기며 적군의 이속을 약 50% 감소시킨다.", inline=True)
@@ -496,6 +496,18 @@ async def on_message(message):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973322296131654/c23e921847396022.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")
         await message.channel.send("아듀로 밀초 정보 서비스", embed=embed)
+        
+    if message.content.startswith("아듀로 타이머"):
+        time = message.content[8:]
+        p = message.author.mention
+        t = await message.channel.send(time)
+        await asyncio.sleep(1)
+        for sec in range(1, int(time)):
+                time = int(time) - 1
+                await t.edit(content=str(int(time)))
+                await asyncio.sleep(1)
+        else:
+            await message.channel.send(p + " " + str(int(sec) + 1) + "초가 지났습니다!")
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

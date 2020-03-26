@@ -499,6 +499,22 @@ async def on_message(message):
                 await asyncio.sleep(1)
         else:
             await message.channel.send(p + " " + str(int(sec) + 1) + "초가 지났습니다!")
+            
+    if message.content.startswith("ad제곱"):
+        n = message.content.split(" ")
+        embed = discord.Embed(title="제곱", description="^", color=0x4641D9)
+        embed.add_field(name="1", value=n[1], inline=True)
+        embed.add_field(name="2", value=n[2], inline=True)
+        embed.add_field(name="결과", value="답은 " + str(int(n[1]) ** int(n[2])) + " 입니다", inline=False)
+        await message.channel.send(embed=embed)
+
+    if message.content.startswith("ad루트"):
+        l = message.content.split(" ")
+        embed = discord.Embed(title="제곱", description="^", color=0x4641D9)
+        embed.add_field(name="1", value=l[1], inline=True)
+        embed.add_field(name="2", value=l[2], inline=True)
+        embed.add_field(name="결과", value="답은 " + str(int(l[1]) ** float(1 / float(l[2]))) + " 입니다", inline=False)
+        await message.channel.send(embed=embed)
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

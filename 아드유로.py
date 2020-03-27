@@ -7,7 +7,7 @@ client = discord.Client() #긴거 대신함
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("아듀로 도움 하면 도와줌"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움 하면 도와드림"))
     print("준비 되었다")
     print(client.user.name)
     print(client.user.id)

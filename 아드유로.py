@@ -510,11 +510,58 @@ async def on_message(message):
 
     if message.content.startswith("ad루트"):
         l = message.content.split(" ")
-        embed = discord.Embed(title="제곱", description="^", color=0x4641D9)
+        embed = discord.Embed(title="뿌리", description="(대충 루트)", color=0x4641D9)
         embed.add_field(name="1", value=l[1], inline=True)
         embed.add_field(name="2", value=l[2], inline=True)
         embed.add_field(name="결과", value="답은 " + str(int(l[1]) ** float(1 / float(l[2]))) + " 입니다", inline=False)
         await message.channel.send(embed=embed)
+        
+    if message.content.startswith("ad룰렛"):
+        num1 = random.randint(0, 10)
+        num2 = random.randint(0, 10)
+        num3 = random.randint(0, 10)
+        if num1 == 0: emo1 = ":zero:"
+        if num1 == 1: emo1 = ":one:"
+        if num1 == 2: emo1 = ":two:"
+        if num1 == 3: emo1 = ":three:"
+        if num1 == 4: emo1 = ":four:"
+        if num1 == 5: emo1 = ":five:"
+        if num1 == 6: emo1 = ":six:"
+        if num1 == 7: emo1 = ":seven:"
+        if num1 == 8: emo1 = ":eight:"
+        if num1 == 9: emo1 = ":nine:"
+        if num1 == 10: emo1 = ":keycap_ten:"
+        if num2 == 0: emo2 = ":zero:"
+        if num2 == 1: emo2 = ":one:"
+        if num2 == 2: emo2 = ":two:"
+        if num2 == 3: emo2 = ":three:"
+        if num2 == 4: emo2 = ":four:"
+        if num2 == 5: emo2 = ":five:"
+        if num2 == 6: emo2 = ":six:"
+        if num2 == 7: emo2 = ":seven:"
+        if num2 == 8: emo2 = ":eight:"
+        if num2 == 9: emo2 = ":nine:"
+        if num2 == 10: emo2 = ":keycap_ten:"
+        if num3 == 0: emo3 = ":zero:"
+        if num3 == 1: emo3 = ":one:"
+        if num3 == 2: emo3 = ":two:"
+        if num3 == 3: emo3 = ":three:"
+        if num3 == 4: emo3 = ":four:"
+        if num3 == 5: emo3 = ":five:"
+        if num3 == 6: emo3 = ":six:"
+        if num3 == 7: emo3 = ":seven:"
+        if num3 == 8: emo3 = ":eight:"
+        if num3 == 9: emo3 = ":nine:"
+        if num3 == 10: emo3 = ":keycap_ten:"
+        embed = discord.Embed(title=":star:이것은 룰렛이여:star:", description=":thinking:", color=0x4641D9)
+        embed.add_field(name="1", value=emo1, inline=True)
+        embed.add_field(name="2", value=emo2, inline=True)
+        embed.add_field(name="3", value=emo3, inline=True)
+        if num1 == num2 == num3:
+            embed.add_field(name="result", value="이거 아주 :star:럭키:star:하군", inline=False)
+        else:
+            embed.add_field(name="result", value="영 좋지 않아요!", inline=False)
+            await message.channel.send(embed=embed)
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

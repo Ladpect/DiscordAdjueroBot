@@ -472,7 +472,7 @@ async def on_message(message):
         embed = discord.Embed(title="밀초 캐릭터 정보 : 일렉트릭", description="번쩍번쩍 번개따라 찌리찌리 짜라짜라", color=0x4641D9)
         embed.add_field(name="체력", value="145", inline=True)
         embed.add_field(name="배리어/배리어 충전량", value="55/24", inline=True)
-        embed.add_field(name="원뚝여부", value="알디(S) 이상의 데미지", inline=True)
+        embed.add_field(name="원뚝여부", value="스피라(S) 이상의 데미지", inline=True)
         embed.add_field(name="스킬", value="스킬을 쓰고 적군에게 에임을 갖다대면 적군은 감전 상태가 되며 공격 불능, 배리어 삭제 디버프를 먹는다. 지속시간은 4초이며 스킬 적중시 1데미지가 들어간다.", inline=True)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973324129173544/f89736c26cf2c27a.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")

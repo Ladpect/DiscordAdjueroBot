@@ -41,12 +41,12 @@ async def on_message(message):
     if message.content in ["아듀로 대화 도움", "ad대화 도움"]:
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화명령어", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}`, `ad주사위 {숫자}`, `ad잘했어`, `ad나 어때?`, `ad레니`", inline=False)
+        await message.channel.send(embed=embed)
         
-        
-    if message.content in ["아듀로 대화 도움", "ad대화 도움"]:
+    if message.content in ["아듀로 이미지 도움", "ad이미지 도움"]:
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.set_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영`, `ad햄스터`, `ad프로필`, `ad둘기이마트`, `ad김치싸대기`, `ad김치수거`, `ad비프로스트`, `ad이건 좀`, `ad변신`, `adㅌㅌ`, `ad박수`, `ad충격`, `ad처형`, `ad토마스`, `ad포나춤`, `ad샌즈`", inline=False)
-        
+        await message.channel.send(embed=embed)
     
     if message.content in ["아듀로 나 어때?", "ad나 어떄?"]:
         embed = discord.Embed(title="관심법", description="그는 김두한의 또다른 인격체라 카더라", color=0x4641D9)

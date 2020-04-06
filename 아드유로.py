@@ -30,8 +30,8 @@ async def on_message(message):
     if message.content in ["아듀로 도움", "ad도움", "adhelp"]:
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)' 또는 ad(명령어)야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}` 등등... `ad대화 도움`에서 확인하세요", inline=False)
-        embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영` 등등...`ad이미지 도움`에서 확인하세요", inline=False)
+        embed.add_field(name="대화", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}` 등등... `ad대도`에서 확인하세요", inline=False)
+        embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영` 등등...`ad이도`에서 확인하세요", inline=False)
         embed.add_field(name="기타", value="`adDM {유저ID} {할말}`, `ad거꾸로 {할말}`", inline=False)
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {나눌 제곱 숫자}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
@@ -39,12 +39,14 @@ async def on_message(message):
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
         
-    if message.content in ["아듀로 대화 도움", "ad대화 도움"]:
+    if message.content in ["ad대화 도움", "ad대도"]:
+        embed = discord.Embed(title="대화명령어들!", description="말해라 아듀로 봇", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화명령어", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}`, `ad주사위 {숫자}`, `ad잘했어`, `ad나 어때?`, `ad레니`", inline=False)
         await message.channel.send(embed=embed)
         
-    if message.content in ["아듀로 이미지 도움", "ad이미지 도움"]:
+    if message.content in ["ad이미지 도움", "ad이도"]:
+        embed = discord.Embed(title="이미지명령어들", description="이미지 노예 아듀로 봇", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.set_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영`, `ad햄스터`, `ad프로필`, `ad둘기이마트`, `ad김치싸대기`, `ad김치수거`, `ad비프로스트`, `ad이건 좀`, `ad변신`, `adㅌㅌ`, `ad박수`, `ad충격`, `ad처형`, `ad토마스`, `ad포나춤`, `ad샌즈`", inline=False)
         await message.channel.send(embed=embed)

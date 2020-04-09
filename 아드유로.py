@@ -561,9 +561,11 @@ async def on_message(message):
         embed.add_field(name="3", value=emo3, inline=True)
         if num1 == num2 == num3:
             embed.add_field(name="result", value="이거 아주 :star:럭키:star:하군", inline=False)
+        elif num1 == num2 or num2 == num3 or num1 == num3:
+            embed.add_field(name="result", value="이거 꽤나 아쉽군:thinking:", inline=False)
         else:
             embed.add_field(name="result", value="영 좋지 않아요!", inline=False)
-            await message.channel.send(embed=embed)
+        await message.channel.send(embed=embed)
             
     if message.content.startswith("ad거꾸로"):
         say = message.content[6:]

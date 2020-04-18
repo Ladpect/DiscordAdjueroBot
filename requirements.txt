@@ -3,3 +3,4 @@ beautifulsoup4==4.8.2
 bs4==0.0.1
 request==2019.4.13
 mysql-connector==2.2.9
+discord==1.0.1

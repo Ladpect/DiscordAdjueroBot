@@ -601,10 +601,10 @@ async def on_message(message):
         cursor.execute("SELECT user_xp FROM users where client_id = " + str(message.author.id))
         result = cursor.fetchall()
         if len(result) == 0:
-            print("얘는 데이터베이스에 없음")
+            await message.channel.send("등록되지 않은 유저입니다.")
             cursor.execute("insert into users VALUES(" + str(message.author.id) + "," + str(xp) + ")")
             mydb.commit()
-            print("이제 너는 나의 노예다")
+            await message.channel.send("자동으로 등록되었습니다")
         else:
             currentXP = result[0][0] + xp
             print(currentXP)

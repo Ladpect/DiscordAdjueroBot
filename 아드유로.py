@@ -1,6 +1,7 @@
 import discord, asyncio, random, datetime
 import os
-import urllib, bs4, request, mysql.connector
+import urllib, bs4, request
+import mysql.connector
 from bs4 import BeautifulSoup
 
 client = discord.Client() #긴거 대신함

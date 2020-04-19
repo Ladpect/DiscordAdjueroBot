@@ -36,6 +36,7 @@ async def on_message(message):
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {나눌 제곱 숫자}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)
+        embed.add_field(name="아드코인", value="`(현재 데이터베이스 기능의 문제가 해결되지 않아 개발이 중단되었습니다.)`", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
         

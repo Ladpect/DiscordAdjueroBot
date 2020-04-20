@@ -4,16 +4,6 @@ import urllib, bs4, request
 from bs4 import BeautifulSoup
 
 client = discord.Client() #긴거 대신함
-mydb = mysql.connector.connect(
-    host="localhost", 
-    user="root", 
-    password="oneshaman0708*", 
-    database="adjuero", 
-    charset="utf8", 
-    auth_plugin="mysql_native_password"
-    )
-def generateXP():
-    return random.randint(1, 100)
 
 @client.event
 async def on_ready():
@@ -576,41 +566,6 @@ async def on_message(message):
         embed = discord.Embed(title="로꾸거", description="로대반 은상세 이", color=0x4641D9)
         embed.add_field(name="결과", value=":arrows_counterclockwise: " + " " + str(say[::-1]), inline=False)
         await message.channel.send(embed=embed)
-    
-    #데이터베이스는 실패작이다. 언젠간 고칠것이다. 언젠간. 난 지금 미쳐있다. 포기할 줄 아는 그런 사람이 되야하는 법이겠지.
-    if message.content == "ad프로필":
-        date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
-        cursor = mydb.cursor()
-        cursor.execute("SELECT user_xp FROM users where client_id = " + str(message.author.id))
-        result = cursor.fetchall()
-        xp = generateXP()
-        tXP = result[0][0] + xp
-        embed = discord.Embed(color=0x4641D9)
-        embed.add_field(name="이름", value=message.author.name, inline=True)
-        embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
-        embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
-        embed.add_field(name="대화 경험치", value=tXP, inline=True)
-        embed.set_thumbnail(url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
-    
-    #야 아드유로, 이제 시작이야. 이거 성공하면 존나 쩌는거 완성된다고. 알겄제?
-    if message.content.startswith("ad"):
-        pass
-    else:
-        xp = generateXP()
-        cursor = mydb.cursor()
-        cursor.execute("SELECT user_xp FROM users where client_id = " + str(message.author.id))
-        result = cursor.fetchall()
-        if len(result) == 0:
-            print("존재하지 않음")
-            cursor.execute("insert into users VALUES(" + str(message.author.id) + "," + str(xp) + ")")
-            mydb.commit()
-            print("등록")
-        else:
-            currentXP = result[0][0] + xp
-            print(currentXP)
-            cursor.execute("UPDATE users SET user_xp = " + str(currentXP) + " WHERE client_id = " + str(message.author.id))
-            mydb.commit()
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

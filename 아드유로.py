@@ -1,5 +1,5 @@
 import discord, asyncio, random, datetime
-import os
+import os, sys, urllib.request, json
 import urllib, bs4, request
 from bs4 import BeautifulSoup
 
@@ -11,7 +11,7 @@ async def on_ready():
     print("준비 되었다")
     print(client.user.name)
     print(client.user.id)
-
+    
 @client.event
 async def on_message(message):
     if message.author.bot: #채팅친 놈이 봇이면 구문 종료
@@ -565,6 +565,86 @@ async def on_message(message):
         say = message.content[6:]
         embed = discord.Embed(title="로꾸거", description="로대반 은상세 이", color=0x4641D9)
         embed.add_field(name="결과", value=":arrows_counterclockwise: " + " " + str(say[::-1]), inline=False)
+        await message.channel.send(embed=embed)
+        
+    if message.content.startswith("ad한영"):
+        learn = message.content.split(" ")
+        Text = ""
+
+        client_id = "UPlhusJW5Lhg6SIKuzfm"
+        client_secret = "Lch08eFSWA"
+
+        url = "https://openapi.naver.com/v1/papago/n2mt"
+        print(len(learn))
+        vrsize = len(learn)  # 배열크기
+        vrsize = int(vrsize)
+        for i in range(1, vrsize): #띄어쓰기 한 텍스트들 인식함
+            Text = Text+" "+learn[i]
+        encText = urllib.parse.quote(Text)
+        data = "source=ko&target=en&text=" + encText
+
+        request = urllib.request.Request(url)
+        request.add_header("X-Naver-Client-Id", client_id)
+        request.add_header("X-Naver-Client-Secret", client_secret)
+
+        response = urllib.request.urlopen(request, data=data.encode("utf-8"))
+
+        rescode = response.getcode()
+        if (rescode == 200):
+            response_body = response.read()
+            data = response_body.decode('utf-8')
+            data = json.loads(data)
+            tranText = data['message']['result']['translatedText']
+        else:
+            print("Error Code:" + rescode)
+
+        print('번역된 내용 :', tranText)
+
+        embed = discord.Embed(
+            title='한글->영어 번역결과',
+            description=tranText,
+            color=0x4641D9
+        )
+        await message.channel.send(embed=embed)
+
+    if message.content.startswith("ad영한"):
+        learn = message.content.split(" ")
+        Text = ""
+
+        client_id = "UPlhusJW5Lhg6SIKuzfm"
+        client_secret = "Lch08eFSWA"
+
+        url = "https://openapi.naver.com/v1/papago/n2mt"
+        print(len(learn))
+        vrsize = len(learn)  # 배열크기
+        vrsize = int(vrsize)
+        for i in range(1, vrsize): #띄어쓰기 한 텍스트들 인식함
+            Text = Text+" "+learn[i]
+        encText = urllib.parse.quote(Text)
+        data = "source=en&target=ko&text=" + encText
+
+        request = urllib.request.Request(url)
+        request.add_header("X-Naver-Client-Id", client_id)
+        request.add_header("X-Naver-Client-Secret", client_secret)
+
+        response = urllib.request.urlopen(request, data=data.encode("utf-8"))
+
+        rescode = response.getcode()
+        if (rescode == 200):
+            response_body = response.read()
+            data = response_body.decode('utf-8')
+            data = json.loads(data)
+            tranText = data['message']['result']['translatedText']
+        else:
+            print("Error Code:" + rescode)
+
+        print('번역된 내용 :', tranText)
+
+        embed = discord.Embed(
+            title='영어->한글 번역결과',
+            description=tranText,
+            color=0x4641D9
+        )
         await message.channel.send(embed=embed)
         
 access_token = os.environ["BOT_TOKEN"]

@@ -37,6 +37,7 @@ async def on_message(message):
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)
         embed.add_field(name="아드코인", value="`(현재 데이터베이스 기능의 문제가 해결되지 않아 개발이 중단되었습니다.)`", inline=False)
+        embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
         
@@ -601,7 +602,7 @@ async def on_message(message):
         print('번역된 내용 :', tranText)
 
         embed = discord.Embed(
-            title='한글->영어 번역결과',
+            title=':flag_kr: :arrow_right: :flag_um:',
             description=tranText,
             color=0x4641D9
         )
@@ -641,7 +642,7 @@ async def on_message(message):
         print('번역된 내용 :', tranText)
 
         embed = discord.Embed(
-            title='영어->한글 번역결과',
+            title=':flag_um: :arrow_right: :flag_kr:',
             description=tranText,
             color=0x4641D9
         )

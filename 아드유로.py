@@ -1,5 +1,5 @@
 import discord, asyncio, random, datetime
-import os, sys, urllib.request, json
+import os, sys, urllib.request, json, mysql.connector
 import urllib, bs4, request
 from bs4 import BeautifulSoup
 
@@ -647,6 +647,40 @@ async def on_message(message):
             color=0x4641D9
         )
         await message.channel.send(embed=embed)
+        
+    if message.content == "ad프로필":
+        date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
+        cursor = mydb.cursor()
+        cursor.execute("SELECT user_xp FROM users where client_id = " + str(message.author.id))
+        result = cursor.fetchall()
+        xp = generateXP()
+        tXP = result[0][0] + xp
+        embed = discord.Embed(color=0x4641D9)
+        embed.add_field(name="이름", value=message.author.name, inline=True)
+        embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
+        embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
+        embed.add_field(name="대화 경험치", value=tXP, inline=True)
+        embed.set_thumbnail(url=message.author.avatar_url)
+        await message.channel.send(embed=embed)
+    
+    #야 아드유로, 이제 시작이야. 이거 성공하면 존나 쩌는거 완성된다고. 알겄제?
+    if message.content.startswith("ad"):
+        pass
+    else:
+        xp = generateXP()
+        cursor = mydb.cursor()
+        cursor.execute("SELECT user_xp FROM users where client_id = " + str(message.author.id))
+        result = cursor.fetchall()
+        if len(result) == 0:
+            print("얘는 데이터베이스에 없음")
+            cursor.execute("insert into users VALUES(" + str(message.author.id) + "," + str(xp) + ")")
+            mydb.commit()
+            print("이제 너는 나의 노예다")
+        else:
+            currentXP = result[0][0] + xp
+            print(currentXP)
+            cursor.execute("UPDATE users SET user_xp = " + str(currentXP) + " WHERE client_id = " + str(message.author.id))
+            mydb.commit()
         
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)

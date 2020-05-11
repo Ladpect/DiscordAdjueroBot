@@ -269,7 +269,7 @@ async def on_message(message):
         embed = discord.Embed(title="아듀로 봇의 밀초 정보 저장소", description="영웅들과 총 정보 등등 많은 정보를 제공합니다", color=0x4641D9)
         embed.add_field(name="캐릭터", value="`ad어썰트`, `ad메딕`, `ad바머`, `ad리콘`, `ad고스트`, `ad쉴드`, `ad런쳐`, `ad인비`, `ad후크`, `ad미오캣`, `ad데페`, `ad아이언`, `ad캐로그`, `ad크리미`, `ad휠레그`, `ad에어`, `ad일렉트릭`, `ad블레이드`, `ad스위니`, `ad마고`", inline=False)
         embed.add_field(name="총기", value="(유저들이 주로 쓰는 총으로 추가 예정)", inline=False)
-        embed.add_field(name="유의사항 1", value="1.정보가 맞지 않을 수 있습니다.", inline=False)
+        embed.add_field(name="유의사항 1", value="1.정보가 맞지 않을 수 있습니다.(만약 정보가 맞지 않거나 추가할 부분이 있다면 증명자료와 함께 `아드유로#5331`로 DM주세요)", inline=False)
         embed.add_field(name="유의사항 2", value="2.원뚝여부에 총기 옆에 '(S)'가 있다면 리콘, 에어의 스킬사용중 나타나는 데미지임을 밝히는 바입니다.", inline=False)
         embed.add_field(name="원뚝여부 `최대뎀 기준 {원래뎀}/{스킬추가뎀(스나한정)}`", value="`에땁 168/184`, `알디 173/190`, `스피라 184/202`, `신스나 193/212`, `클샷 220`, `신샷 230`", inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")

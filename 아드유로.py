@@ -445,7 +445,7 @@ async def on_message(message):
         embed = discord.Embed(title="밀초 캐릭터 정보 : 블레이드", description="칼 하나로 쓱싹 하는 벌레", color=0x4641D9)
         embed.add_field(name="체력", value="165", inline=True)
         embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)
-        embed.add_field(name="원뚝여부", value="에땁 이상의 ", inline=True)
+        embed.add_field(name="원뚝여부", value="에땁 이상의 데미지", inline=True)
         embed.add_field(name="스킬", value="스킬을 쓰면 에임 방향으로 12m 돌진하며 적군에 맞으면 적군은 200데미지를 입는다. 스킬로 적군이 죽으면 스킬을 바로 또 쓸 수 있다.(돌진 거리는 총 무게에 비례한다.)", inline=True)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/691973319888470016/e589eb34d9b03bea.png")
         embed.set_footer(text="아듀로 봇의 존재이유.")

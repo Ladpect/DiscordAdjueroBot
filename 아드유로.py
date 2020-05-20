@@ -1,7 +1,6 @@
 import discord, asyncio, random, datetime
 import os, sys, urllib.request, json
 import urllib, bs4, request
-from bs4 import BeautifulSoup4
 client = discord.Client() #긴거 대신함
 
 @client.event

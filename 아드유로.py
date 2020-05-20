@@ -658,7 +658,6 @@ async def on_message(message):
         embed.add_field(name="이름", value=message.author.name, inline=True)
         embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
         embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
-        embed.add_field(name="대화 경험치", value=tXP, inline=True)
         embed.set_thumbnail(url=message.author.avatar_url)
         await message.channel.send(embed=embed)
     

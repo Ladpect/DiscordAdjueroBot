@@ -605,6 +605,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
         
     if message.content == "ad룰렛":
+        mention = message.author.mention
         num1 = random.randint(0, 10)
         num2 = random.randint(0, 10)
         num3 = random.randint(0, 10)
@@ -656,6 +657,7 @@ async def on_message(message):
         else:
             embed.add_field(name="result", value="YEAHHHHHH", inline=False)
         await message.channel.send(embed=embed)
+        await message.channel.send(mention)
     
         
 access_token = os.environ["BOT_TOKEN"]

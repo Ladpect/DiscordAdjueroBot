@@ -232,7 +232,7 @@ async def on_message(message):
         a = message.content.split(" ")
         target1 = a[1]
         author = target1[2:21]
-        await message.author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2])
+        await message.author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2]))
         
     #if message.content.startswith("아듀로 뮤트죄수임명"):
         #author = message.guild.get_member(int(message.content[11:30])) #유저 아이디
@@ -664,4 +664,4 @@ async def on_message(message):
     
         
 access_token = os.environ["BOT_TOKEN"]
-client.run(access_token)
+client.run(access_token, bot=True, reconnect=True)

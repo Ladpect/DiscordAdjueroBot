@@ -229,9 +229,10 @@ async def on_message(message):
         await client.get_channel(int(channel)).send(msg) #채널 그게 정수값으로 해서 그채널 보내게 함
         
     if message.content.startswith("adDM"):
-        author = message.guild.get_member(int(message.content[5:24])) #유저 아이디
-        msg = message.content[24:] #유저에게 할말
-        await author.send(msg)
+        a = message.content.split(" ")
+        target1 = a[1]
+        author = target1[2:21]
+        await message.author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2])
         
     #if message.content.startswith("아듀로 뮤트죄수임명"):
         #author = message.guild.get_member(int(message.content[11:30])) #유저 아이디

@@ -1,7 +1,8 @@
 import discord, asyncio, random, datetime
 import os, sys, urllib.request, json
 import urllib, bs4, request
-client = discord.Client() #긴거 대신함
+from discord.ext import commands
+client = commands.Bot(command_prefix="ad", case_insensitive=True)
 
 @client.event
 async def on_ready():
@@ -658,6 +659,7 @@ async def on_message(message):
             embed.add_field(name="result", value="YEAHHHHHH", inline=False)
         await message.channel.send(embed=embed)
         await message.channel.send(mention)
+    await client.process_commands(message)
     
         
 access_token = os.environ["BOT_TOKEN"]

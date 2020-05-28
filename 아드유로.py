@@ -39,9 +39,9 @@ async def on_message(message):
         embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
-        embed2 = discord.Embed(title="문의방법", description="DM을 봇으로 보냅니다. 간단한건 이걸 추천드리나 긴 사항에 대해선 직접 DM으로 오시는걸 추천드립니다. `아드유로#5331`", color=0x4641D9)
-        embed2.add_field(name="명령어", value="`adDM {멘션} {할 말}`", inline=False)
-        embed2.add_field(name="주의사항", value="문의만 넣어주시길 바랍니다. 누가 보냈는지 확인이 가능하니 장난으로 보내시는 일은 없길 바랍니다", inline=False)
+        embed2 = discord.Embed(title="문의방법", description="문의", color=0x4641D9)
+        embed2.add_field(name="문의", value="`아드유로#5331`", inline=False)
+        embed2.add_field(name="주의사항", value="문제가 발생하면 DM주세요", inline=False)
         await message.channel.send(embed=embed2)
         
     if message.content in ["ad대화 도움", "ad대도"]:
@@ -235,8 +235,8 @@ async def on_message(message):
     if message.content.startswith("adDM"):
         a = message.content.split(" ")
         target1 = a[1]
-        author = target1[2:21]
-        await message.author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2]))
+        author = str(target1[2:21])
+        await author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2]))
         
     #if message.content.startswith("아듀로 뮤트죄수임명"):
         #author = message.guild.get_member(int(message.content[11:30])) #유저 아이디

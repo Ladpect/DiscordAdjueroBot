@@ -53,7 +53,7 @@ async def on_message(message):
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {근}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)
-        embed.add_field(name="아드코인", value="`(현재 데이터베이스 기능의 문제가 해결되지 않아 개발이 중단되었습니다.)`", inline=False)
+        embed.add_field(name="아드코인", value="`ad가입`, `ad지갑`", inline=False)
         embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
@@ -61,6 +61,10 @@ async def on_message(message):
         embed2.add_field(name="명령어", value="`adDM {멘션} {할 말}`", inline=False)
         embed2.add_field(name="주의사항", value="문의만 넣어주시길 바랍니다. 누가 보냈는지 확인이 가능하니 장난으로 보내시는 일은 없길 바랍니다", inline=False)
         await message.channel.send(embed=embed2)
+        embed3 = discord.Embed(title="아드코인", description="아드코인에 대해서 설명드립니다", color=0x4641D9)
+        embed3.add_field(name="얻는방법", value="룰렛을 돌려 같은 숫자 2개가 나오면 1유로, 잭팟은 10유로를 지급합니다.", inline=False)
+        embed3.add_field(name="패치예정", value="아드코인이 쓰일 광산 시스템을 도입할것입니다. 랭킹도 만들어야겠죠.", inline=False)
+        await message.channel.send(embed=embed3)
         
     if message.content in ["ad대화 도움", "ad대도"]:
         embed = discord.Embed(title="대화명령어들!", description="말해라 아듀로 봇", color=0x4641D9)

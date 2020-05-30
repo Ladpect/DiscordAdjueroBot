@@ -699,6 +699,14 @@ async def on_message(message):
         
     if message.content == "ad프로필":
         date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
+        embed = discord.Embed(color=0x4641D9)
+        embed.add_field(name="이름", value=message.author.name, inline=True)
+        embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
+        embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
+        embed.set_thumbnail(url=message.author.avatar_url)
+        await message.channel.send(embed=embed)
+            
+    if message.content == "ad지갑":
         db = sqlite3.connect('adjuero.db')
         cursor = db.cursor()
         cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{message.author.id}'")
@@ -707,12 +715,8 @@ async def on_message(message):
             await message.channel.send("`ad가입`을 통해 가입을 해주세요.")
         else:
             coin = str(result[2])
-            embed = discord.Embed(color=0x4641D9)
-            embed.add_field(name="이름", value=message.author.name, inline=True)
-            embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
-            embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
-            embed.add_field(name="아드코인", value=f"{coin} :euro:", inline=True)
-            embed.set_thumbnail(url=message.author.avatar_url)
+            embed = discord.Embed(title=f"{message.author.name}님의 :euro: 지갑 :euro:", color=0x4641D9)
+            embed.add_field(name="아드코인", value=coin + " :euro:", inline=True)
             await message.channel.send(embed=embed)
     await client.process_commands(message)
     

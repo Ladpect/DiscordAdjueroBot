@@ -6,7 +6,7 @@ client = commands.Bot(command_prefix="ad", case_insensitive=True)
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("adCoin & adMine project"))
     print("준비 되었다")
     print(client.user.name)
     print(client.user.id)

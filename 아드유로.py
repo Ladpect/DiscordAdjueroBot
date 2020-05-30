@@ -2,14 +2,32 @@ import discord, asyncio, random, datetime
 import os, sys, urllib.request, json
 import urllib, bs4, request
 from discord.ext import commands
+import sqlite3
 client = commands.Bot(command_prefix="ad", case_insensitive=True)
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("adCoin & adMine project"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움"))
     print("준비 되었다")
     print(client.user.name)
     print(client.user.id)
+
+@client.command(pass_context=True)
+async def 가입(ctx):
+    db = sqlite3.connect('adjuero.db')
+    cursor = db.cursor()
+    cursor.execute(f"SELECT user_id FROM cm WHERE user_id = '{ctx.author.id}'")
+    result = cursor.fetchone()
+    if result is None:
+        sql = ("INSERT INTO cm(user_id, user_name, coin) VALUES(?,?,?)")
+        val = (ctx.author.id, ctx.author.name, 0)
+        cursor.execute(sql, val)
+        db.commit()
+        await ctx.send(f"{ctx.author.name}님은 이제 가입되었습니다!")
+    else:
+        await ctx.send(f"{ctx.author.name}님은 이미 가입되어 있습니다.")
+
+
     
 @client.event
 async def on_message(message):
@@ -31,7 +49,7 @@ async def on_message(message):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}` 등등... `ad대도`에서 확인하세요", inline=False)
         embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영` 등등...`ad이도`에서 확인하세요", inline=False)
-        embed.add_field(name="기타", value="`ad거꾸로 {할말}`", inline=False)
+        embed.add_field(name="기타", value="`adDM {유저ID} {할말}`, `ad거꾸로 {할말}`", inline=False)
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {근}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)
@@ -39,9 +57,9 @@ async def on_message(message):
         embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
-        embed2 = discord.Embed(title="문의방법", description="문의", color=0x4641D9)
-        embed2.add_field(name="문의", value="`아드유로#5331`", inline=False)
-        embed2.add_field(name="주의사항", value="문제가 발생하면 DM주세요", inline=False)
+        embed2 = discord.Embed(title="문의방법", description="DM을 봇으로 보냅니다. 간단한건 이걸 추천드리나 긴 사항에 대해선 직접 DM으로 오시는걸 추천드립니다. `아드유로#5331`", color=0x4641D9)
+        embed2.add_field(name="명령어", value="`adDM {멘션} {할 말}`", inline=False)
+        embed2.add_field(name="주의사항", value="문의만 넣어주시길 바랍니다. 누가 보냈는지 확인이 가능하니 장난으로 보내시는 일은 없길 바랍니다", inline=False)
         await message.channel.send(embed=embed2)
         
     if message.content in ["ad대화 도움", "ad대도"]:
@@ -235,19 +253,9 @@ async def on_message(message):
     if message.content.startswith("adDM"):
         a = message.content.split(" ")
         target1 = a[1]
-        author = str(target1[2:21])
-        await author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2]))
-        
-    #if message.content.startswith("아듀로 뮤트죄수임명"):
-        #author = message.guild.get_member(int(message.content[11:30])) #유저 아이디
-        #role = discord.utils.get(message.guild.roles, name="죄수") #죄수 임명 변수
-        #await author.add_roles(role)#죄수 임명
-
-    #if message.content.startswith("아듀로 뮤트죄수해제"):
-        #author = message.guild.get_member(int(message.content[11:30])) #유저 아이디
-        #role = discord.utils.get(message.guild.roles, name="죄수") #죄수 변수 찾아라
-        #await author.remove_roles(role)#죄수 해제
-        
+        author = target1[2:21]
+        await message.author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2]))
+          
     if message.content.startswith("ad따라해"):
         msg = message.content[6:] #할말 보내는거
         await message.channel.send(msg) #할말 보내는거
@@ -256,9 +264,6 @@ async def on_message(message):
         num = message.content[6:]
         op = random.randint(0, int(num))
         await message.channel.send(op)
-                           
-    if message.content.startswith("@everyone"):
-        await message.channel.send("그런건 진짜 가끔만 쓰자 친구야")
 
     
     #if message.content == "아듀로 시간":
@@ -611,61 +616,105 @@ async def on_message(message):
         await message.channel.send(embed=embed)
         
     if message.content == "ad룰렛":
-        mention = message.author.mention
-        num1 = random.randint(0, 10)
-        num2 = random.randint(0, 10)
-        num3 = random.randint(0, 10)
-        if num1 == 0: emo1 = ":zero:"
-        if num1 == 1: emo1 = ":one:"
-        if num1 == 2: emo1 = ":two:"
-        if num1 == 3: emo1 = ":three:"
-        if num1 == 4: emo1 = ":four:"
-        if num1 == 5: emo1 = ":five:"
-        if num1 == 6: emo1 = ":six:"
-        if num1 == 7: emo1 = ":seven:"
-        if num1 == 8: emo1 = ":eight:"
-        if num1 == 9: emo1 = ":nine:"
-        if num1 == 10: emo1 = ":keycap_ten:"
-        if num2 == 0: emo2 = ":zero:"
-        if num2 == 1: emo2 = ":one:"
-        if num2 == 2: emo2 = ":two:"
-        if num2 == 3: emo2 = ":three:"
-        if num2 == 4: emo2 = ":four:"
-        if num2 == 5: emo2 = ":five:"
-        if num2 == 6: emo2 = ":six:"
-        if num2 == 7: emo2 = ":seven:"
-        if num2 == 8: emo2 = ":eight:"
-        if num2 == 9: emo2 = ":nine:"
-        if num2 == 10: emo2 = ":keycap_ten:"
-        if num3 == 0: emo3 = ":zero:"
-        if num3 == 1: emo3 = ":one:"
-        if num3 == 2: emo3 = ":two:"
-        if num3 == 3: emo3 = ":three:"
-        if num3 == 4: emo3 = ":four:"
-        if num3 == 5: emo3 = ":five:"
-        if num3 == 6: emo3 = ":six:"
-        if num3 == 7: emo3 = ":seven:"
-        if num3 == 8: emo3 = ":eight:"
-        if num3 == 9: emo3 = ":nine:"
-        if num3 == 10: emo3 = ":keycap_ten:"
-        embed = discord.Embed(title=":slot_machine:", description=":star:WOW:star:", color=0x4641D9)
-        embed.set_author(name="아드유로 봇", icon_url="https://cdn.discordapp.com/attachments/685873675555176492/711115361910521857/21.jpg")
-        embed.add_field(name="1", value=emo1, inline=True)
-        embed.add_field(name="2", value=emo2, inline=True)
-        embed.add_field(name="3", value=emo3, inline=True)
-        if num1 == num2 == num3:
-            embed.add_field(name="result", value="what the...", inline=False)
-            role = discord.utils.get(message.guild.roles, name="잭팟 당첨자")
-            await author.add_roles(role)
-            await message.channel.send(message.author.mention + " :tada: 축하드립니다!!! :tada:")
-        elif num1 == num2 or num2 == num3 or num1 == num3:
-            embed.add_field(name="result", value="OOOF", inline=False)
+        db = sqlite3.connect('adjuero.db')
+        cursor = db.cursor()
+        cursor.execute(f"SELECT user_id FROM cm WHERE user_id = '{message.author.id}'")
+        result = cursor.fetchone()
+        if result is None:
+            await message.channel.send("`ad가입`을 통해 가입해주세요.")
         else:
-            embed.add_field(name="result", value="YEAHHHHHH", inline=False)
-        await message.channel.send(embed=embed)
-        await message.channel.send(mention)
+            mention = message.author.mention
+            num1 = random.randint(0, 10)
+            num2 = random.randint(0, 10)
+            num3 = random.randint(0, 10)
+            if num1 == 0: emo1 = ":zero:"
+            if num1 == 1: emo1 = ":one:"
+            if num1 == 2: emo1 = ":two:"
+            if num1 == 3: emo1 = ":three:"
+            if num1 == 4: emo1 = ":four:"
+            if num1 == 5: emo1 = ":five:"
+            if num1 == 6: emo1 = ":six:"
+            if num1 == 7: emo1 = ":seven:"
+            if num1 == 8: emo1 = ":eight:"
+            if num1 == 9: emo1 = ":nine:"
+            if num1 == 10: emo1 = ":keycap_ten:"
+            if num2 == 0: emo2 = ":zero:"
+            if num2 == 1: emo2 = ":one:"
+            if num2 == 2: emo2 = ":two:"
+            if num2 == 3: emo2 = ":three:"
+            if num2 == 4: emo2 = ":four:"
+            if num2 == 5: emo2 = ":five:"
+            if num2 == 6: emo2 = ":six:"
+            if num2 == 7: emo2 = ":seven:"
+            if num2 == 8: emo2 = ":eight:"
+            if num2 == 9: emo2 = ":nine:"
+            if num2 == 10: emo2 = ":keycap_ten:"
+            if num3 == 0: emo3 = ":zero:"
+            if num3 == 1: emo3 = ":one:"
+            if num3 == 2: emo3 = ":two:"
+            if num3 == 3: emo3 = ":three:"
+            if num3 == 4: emo3 = ":four:"
+            if num3 == 5: emo3 = ":five:"
+            if num3 == 6: emo3 = ":six:"
+            if num3 == 7: emo3 = ":seven:"
+            if num3 == 8: emo3 = ":eight:"
+            if num3 == 9: emo3 = ":nine:"
+            if num3 == 10: emo3 = ":keycap_ten:"
+            embed = discord.Embed(title=":slot_machine:", description=":star:WOW:star:", color=0x4641D9)
+            embed.set_author(name="아드유로 봇", icon_url="https://cdn.discordapp.com/attachments/685873675555176492/711115361910521857/21.jpg")
+            embed.add_field(name="1", value=emo1, inline=True)
+            embed.add_field(name="2", value=emo2, inline=True)
+            embed.add_field(name="3", value=emo3, inline=True)
+            if num1 == num2 == num3:
+                embed.add_field(name="result", value="what the...", inline=False)
+                role = discord.utils.get(message.guild.roles, name="잭팟 당첨자")
+                await author.add_roles(role)
+                await message.channel.send(message.author.mention + " :tada: 축하드립니다!!! :tada:")
+                db = sqlite3.connect('adjuero.db')
+                cursor = db.cursor()
+                cursor.execute(f"SELECT user_id, user_id, coin FROM cm WHERE user_id = '{message.author.id}'")
+                result = cursor.fetchone()
+                coin = int(result[2])
+                sql = ("UPDATE cm SET coin = ? WHERE user_id = ?")
+                val = (coin + 10, message.author.id)
+                cursor.execute(sql, val)
+                db.commit()
+                await message.channel.send("10 :euro: 얻었습니다!")
+            elif num1 == num2 or num2 == num3 or num1 == num3:
+                embed.add_field(name="result", value="OOOF", inline=False)
+                db = sqlite3.connect('adjuero.db')
+                cursor = db.cursor()
+                cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{message.author.id}'")
+                result = cursor.fetchone()
+                coin = int(result[2])
+                sql = ("UPDATE cm SET coin = ? WHERE user_id = ?")
+                val = (coin + 1, message.author.id)
+                cursor.execute(sql, val)
+                db.commit()
+                await message.channel.send("1 :euro: 얻었습니다!")
+            else:
+                embed.add_field(name="result", value="YEAHHHHHH", inline=False)
+            await message.channel.send(embed=embed)
+            await message.channel.send(mention)
+        
+    if message.content == "ad프로필":
+        date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
+        db = sqlite3.connect('adjuero.db')
+        cursor = db.cursor()
+        cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{message.author.id}'")
+        result = cursor.fetchone()
+        if result is None:
+            await message.channel.send("`ad가입`을 통해 가입을 해주세요.")
+        else:
+            coin = str(result[2])
+            embed = discord.Embed(color=0x4641D9)
+            embed.add_field(name="이름", value=message.author.name, inline=True)
+            embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
+            embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
+            embed.add_field(name="아드코인", value=f"{coin} :euro:", inline=True)
+            embed.set_thumbnail(url=message.author.avatar_url)
+            await message.channel.send(embed=embed)
     await client.process_commands(message)
     
-        
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token, bot=True, reconnect=True)

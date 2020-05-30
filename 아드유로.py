@@ -49,7 +49,7 @@ async def on_message(message):
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="대화", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}` 등등... `ad대도`에서 확인하세요", inline=False)
         embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영` 등등...`ad이도`에서 확인하세요", inline=False)
-        embed.add_field(name="기타", value="`adDM {유저ID} {할말}`, `ad거꾸로 {할말}`", inline=False)
+        embed.add_field(name="기타", value="`ad거꾸로 {할말}`", inline=False)
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {근}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)

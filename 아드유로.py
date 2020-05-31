@@ -224,10 +224,6 @@ async def on_message(message):
         embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
-        embed2 = discord.Embed(title="문의방법", description="DM을 봇으로 보냅니다. 간단한건 이걸 추천드리나 긴 사항에 대해선 직접 DM으로 오시는걸 추천드립니다. `아드유로#5331`", color=0x4641D9)
-        embed2.add_field(name="명령어", value="`adDM {멘션} {할 말}`", inline=False)
-        embed2.add_field(name="주의사항", value="문의만 넣어주시길 바랍니다. 누가 보냈는지 확인이 가능하니 장난으로 보내시는 일은 없길 바랍니다", inline=False)
-        await message.channel.send(embed=embed2)
     if message.content == "ad광산 도움":
         embed3 = discord.Embed(title=":euro: 아드광산 :pick:", color=0x4641D9)
         embed3.add_field(name="`ad가입`", value="가입합니다.", inline=False)

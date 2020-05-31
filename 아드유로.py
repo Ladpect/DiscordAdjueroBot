@@ -35,6 +35,8 @@ async def 광산건설(ctx):
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
+    elif result[3] == "T":
+        await ctx.send(f"{ctx.author.name}님은 이미 광산이 있습니다!")
     else:
         coin = str(result[2])
         if not int(coin) > 49:

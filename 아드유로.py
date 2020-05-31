@@ -228,6 +228,13 @@ async def on_message(message):
         embed2.add_field(name="명령어", value="`adDM {멘션} {할 말}`", inline=False)
         embed2.add_field(name="주의사항", value="문의만 넣어주시길 바랍니다. 누가 보냈는지 확인이 가능하니 장난으로 보내시는 일은 없길 바랍니다", inline=False)
         await message.channel.send(embed=embed2)
+    if message.content == "ad광산 도움":
+        embed3 = discord.Embed(title=":euro: 아드광산 :pick:", color=0x4641D9)
+        embed3.add_field(name="`ad지갑`", value="자신의 아드코인 보유량을 확인합니다." inline=False)
+        embed3.add_field(name="`ad광산`", value="자신이 가진 광부, 광물들을 확인합니다." inline=False)
+        embed3.add_field(name="`ad채굴`", value="채굴합니다. 확률적으로 나오는 광물의 종류, 개수가 정해집니다." inline=False)
+        embed3.add_field(name="`ad광부고용`", value="광부를 고용합니다. 광부의 가격은 100 + (광부 수 * 4000)유로 입니다." inline=False)
+        embed3.add_field(name="`ad판매 {광물 이름} {갯수}`", value="광물을 판매합니다." inline=False)
         
     if message.content in ["ad대화 도움", "ad대도"]:
         embed = discord.Embed(title="대화명령어들!", description="말해라 아듀로 봇", color=0x4641D9)
@@ -843,10 +850,10 @@ async def on_message(message):
                 result = cursor.fetchone()
                 coin = int(result[2])
                 sql = ("UPDATE cm SET coin = ? WHERE user_id = ?")
-                val = (coin + 10, message.author.id)
+                val = (coin + 100, message.author.id)
                 cursor.execute(sql, val)
                 db.commit()
-                await message.channel.send("10 :euro: 얻었습니다!")
+                await message.channel.send("100 :euro: 얻었습니다!")
             elif num1 == num2 or num2 == num3 or num1 == num3:
                 embed.add_field(name="result", value="OOOF", inline=False)
                 db = sqlite3.connect('adjuero.db')

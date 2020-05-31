@@ -238,6 +238,7 @@ async def on_message(message):
         embed3.add_field(name="`ad광부고용`", value="광부를 고용합니다. 광부의 가격은 100 + (광부 수 * 4000)유로 입니다.", inline=False)
         embed3.add_field(name="`ad판매 {광물 이름} {갯수}`", value="광물을 판매합니다.", inline=False)
         embed3.add_field(name="아드코인 획득방법", value="광산을 열 수 있는 50코인은 룰렛을 통해 획득 가능합니다.", inline=False)
+        await message.channel.send(embed=embed3)
         
     if message.content in ["ad대화 도움", "ad대도"]:
         embed = discord.Embed(title="대화명령어들!", description="말해라 아듀로 봇", color=0x4641D9)

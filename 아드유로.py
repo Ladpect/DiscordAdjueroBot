@@ -220,11 +220,11 @@ async def on_message(message):
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {근}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)
-        embed.add_field(name="아드코인", value="`ad광산 `", inline=False)
+        embed.add_field(name="아드코인", value="`ad광산도움`", inline=False)
         embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
-    if message.content == "ad광산 도움":
+    if message.content == "ad광산도움":
         embed3 = discord.Embed(title=":euro: 아드광산 :pick:", color=0x4641D9)
         embed3.add_field(name="`ad가입`", value="가입합니다.", inline=False)
         embed3.add_field(name="`ad지갑`", value="자신의 아드코인 보유량을 확인합니다.", inline=False)

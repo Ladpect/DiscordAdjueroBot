@@ -803,6 +803,7 @@ async def on_message(message):
             num1 = random.randint(0, 10)
             num2 = random.randint(0, 10)
             num3 = random.randint(0, 10)
+            coi = random.randint(1, 7)
             if num1 == 0: emo1 = ":zero:"
             if num1 == 1: emo1 = ":one:"
             if num1 == 2: emo1 = ":two:"
@@ -855,7 +856,7 @@ async def on_message(message):
                 val = (coin + 10, message.author.id)
                 cursor.execute(sql, val)
                 db.commit()
-                await message.channel.send("10 :euro: 얻었습니다!")
+                await message.channel.send("100 :euro: 얻었습니다!")
             elif num1 == num2 or num2 == num3 or num1 == num3:
                 embed.add_field(name="result", value="OOOF", inline=False)
                 db = sqlite3.connect('adjuero.db')
@@ -864,10 +865,10 @@ async def on_message(message):
                 result = cursor.fetchone()
                 coin = int(result[2])
                 sql = ("UPDATE cm SET coin = ? WHERE user_id = ?")
-                val = (coin + 1, message.author.id)
+                val = (coin + coi, message.author.id)
                 cursor.execute(sql, val)
                 db.commit()
-                await message.channel.send("1 :euro: 얻었습니다!")
+                await message.channel.send(f"{coi} :euro: 얻었습니다!")
             else:
                 embed.add_field(name="result", value="YEAHHHHHH", inline=False)
             await message.channel.send(embed=embed)

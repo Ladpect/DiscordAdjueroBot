@@ -845,7 +845,7 @@ async def on_message(message):
                 embed.add_field(name="result", value="what the...", inline=False)
                 role = discord.utils.get(message.guild.roles, name="잭팟 당첨자")
                 await author.add_roles(role)
-                await message.channel.send(message.author.mention + " :tada: 축하드립니다!!! :tada:")
+                await message.channel.send(message.author.mention + " :tada: 축하드립니다! :tada:")
                 db = sqlite3.connect('adjuero.db')
                 cursor = db.cursor()
                 cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{message.author.id}'")
@@ -952,7 +952,7 @@ async def on_message(message):
             else:
                 if str(nu) == "모두":
                     if result[t] = 0:
-                        await message.channel.send(f"")
+                        await message.channel.send(f"{message.author.name}님은 {mi}을 보유하고 있지 않습니다.")
                     else:    
                         sql = (f"UPDATE cm SET coin = ?, {mi} = ? WHERE user_id = ?")
                         val = (int(result[2] + result[t] * sell), int(result[t] - result[t]),message.author.id)

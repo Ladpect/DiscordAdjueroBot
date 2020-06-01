@@ -88,13 +88,13 @@ async def 광부고용(ctx):
     cursor = db.cursor()
     cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
-    miner = int(100 + int(result[4] * 10000))
+    miner = int(100 + int(result[4] * 8000))
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     elif result[3] == "F":
         await ctx.send("50 :euro: 를 모아 `ad광산건설`을 통해 광산을 먼저 만들어주세요!")
-    elif not int(result[2]) >= int(100 + int(result[4] * 10000)):
-        await ctx.send("광부를 고용하는데엔 " + str(int(100 + int(result[4] * 4000))) + f":euro: 의 비용이 소요됩니다. {ctx.author.name}님은 현재 {result[2]} :euro: 를 가지고 계십니다.")
+    elif not int(result[2]) >= int(100 + int(result[4] * 8000)):
+        await ctx.send("광부를 고용하는데엔 " + str(int(100 + int(result[4] * 8000))) + f":euro: 의 비용이 소요됩니다. {ctx.author.name}님은 현재 {result[2]} :euro: 를 가지고 계십니다.")
     else:
         sql = (f"UPDATE cm SET coin = ? WHERE user_id = ?")
         val = (int(result[2] - miner), ctx.author.id)

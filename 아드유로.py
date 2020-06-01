@@ -951,7 +951,7 @@ async def on_message(message):
                     await message.channel.send(f"{message.author.name}님은 {mi}를 판매하여 {int(nu) * sell} :euro: 를 얻었습니다!")
             else:
                 if str(nu) == "모두":
-                    if int(result[t]) = 0:
+                    if int(result[t]) = int(0):
                         await message.channel.send(f"{message.author.name}님은 {mi}을 보유하고 있지 않습니다.")
                     else:    
                         sql = (f"UPDATE cm SET coin = ?, {mi} = ? WHERE user_id = ?")

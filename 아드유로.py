@@ -186,7 +186,7 @@ async def 채굴(ctx):
         elif pro >= 99 and pro <= 100:
             m = ":boom: 아드석 :boom:"
             num = random.randint(1, 5)
-            sql = (f"UPDATE cm SET 사랑석 = ? WHERE user_id = ?")
+            sql = (f"UPDATE cm SET 아드석 = ? WHERE user_id = ?")
             val = (int(result[14]) + int(int(num) * int(result[4])), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()

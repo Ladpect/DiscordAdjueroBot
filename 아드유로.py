@@ -13,7 +13,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     
-@bot.command(pass_content=True)
+@client.command(pass_content=True)
 async def 삭제(ctx, a):
     try:
         if ctx.author.guild_permissions.administrator:

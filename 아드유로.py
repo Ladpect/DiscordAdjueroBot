@@ -7,10 +7,16 @@ client = commands.Bot(command_prefix="ad", case_insensitive=True)
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움&ad광산도움"))
     print("준비 되었다")
     print(client.user.name)
     print(client.user.id)
+    
+@client.command(pass_content=True)
+async def 삭제(ctx, a):
+  await ctx.channel.purge(limit=int(a) + 1)
+  await asyncio.sleep(3)
+  await ctx.send(f"{a}개의 메세지를 삭제했습니다")
 
 @client.command(pass_context=True)
 async def 가입(ctx):

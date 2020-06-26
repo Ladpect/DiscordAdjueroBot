@@ -3,6 +3,7 @@ import os, sys, urllib.request, json
 import urllib, bs4, request
 from discord.ext import commands
 import sqlite3
+from discord.ext.commands import CommandError
 client = commands.Bot(command_prefix="ad", case_insensitive=True)
 
 @client.event
@@ -12,14 +13,17 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     
-@client.command(pass_content=True)
+@bot.command(pass_content=True)
 async def 삭제(ctx, a):
-    if ctx.author.guild_permissions.administrator:
-        await ctx.channel.purge(limit=int(a) + 1)
-        await asyncio.sleep(3)
-        await ctx.send(f"{a}개의 메세지를 삭제했습니다")
-    else:
-        await ctx.send(f"{ctx.author.name}님은 관리자 권한이 없습니다.")
+    try:
+        if ctx.author.guild_permissions.administrator:
+            await ctx.channel.purge(limit=int(a) + 1)
+            await asyncio.sleep(3)
+            await ctx.send(f"{a}개의 메세지를 삭제했습니다")
+        else:
+            await ctx.send(f"{ctx.author.name}님은 관리자 권한이 없습니다.")
+    except CommandError:
+        await ctx.send("봇에게 메세지를 삭제할 수 있는 권한이 없거나 메세지를 삭제하지 못한 것 같습니다")
 
 @client.command(pass_context=True)
 async def 가입(ctx):
@@ -221,6 +225,7 @@ async def on_message(message):
     if message.content in ["아듀로 도움", "ad도움", "adhelp"]:
         embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)' 또는 ad(명령어)야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
+        embed.add_field(name="관리", value="`ad삭제 {삭제량}`", inline=False)
         embed.add_field(name="대화", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}` 등등... `ad대도`에서 확인하세요", inline=False)
         embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영` 등등...`ad이도`에서 확인하세요", inline=False)
         embed.add_field(name="기타", value="`adDM {유저ID} {할말}`, `ad거꾸로 {할말}`", inline=False)
@@ -231,9 +236,8 @@ async def on_message(message):
         embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
         embed.set_footer(text="자주 봐두면 좋아!")
         await message.channel.send("도움이 필요하신가요?", embed=embed)
-        embed2 = discord.Embed(title="문의방법", description="DM을 봇으로 보냅니다. 간단한건 이걸 추천드리나 긴 사항에 대해선 직접 DM으로 오시는걸 추천드립니다. `아드유로#5331`", color=0x4641D9)
-        embed2.add_field(name="명령어", value="`adDM {멘션} {할 말}`", inline=False)
-        embed2.add_field(name="주의사항", value="문의만 넣어주시길 바랍니다. 누가 보냈는지 확인이 가능하니 장난으로 보내시는 일은 없길 바랍니다", inline=False)
+        embed2 = discord.Embed(title="문의", description="문의", color=0x4641D9)
+        embed2.add_field(name="문의방법", value="`adjuero#5331`로 DM주시면 됩니다", inline=False)
         await message.channel.send(embed=embed2)
         
     if message.content == "ad광산도움":

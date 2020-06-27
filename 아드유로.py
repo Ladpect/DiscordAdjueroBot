@@ -23,7 +23,7 @@ async def 삭제(ctx, a):
         else:
             await ctx.send(f"{ctx.author.name}님은 관리자 권한이 없습니다.")
     except CommandError:
-        await ctx.send("봇에게 메세지를 삭제할 수 있는 권한이 없거나 메세지를 삭제하지 못한 것 같습니다")
+        await ctx.send("봇에게 메세지를 삭제할 수 있는 권한이 없거나 메세지를 삭제하지 못한 것 같습니다.")
 
 @client.command(pass_context=True)
 async def 가입(ctx):

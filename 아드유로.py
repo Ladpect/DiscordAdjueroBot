@@ -14,6 +14,11 @@ async def on_ready():
     print(client.user.id)
     
 @client.command(pass_content=True)
+async def 따라해(ctx, *, msg):
+    await ctx.channel.purge(limit=1)
+    await ctx.send(msg)
+
+@client.command(pass_content=True)
 async def 삭제(ctx, a):
     try:
         if ctx.author.guild_permissions.administrator:
@@ -439,15 +444,7 @@ async def on_message(message):
         msg = message.content[27:] #할말 보내는거
         await client.get_channel(int(channel)).send(msg) #채널 그게 정수값으로 해서 그채널 보내게 함
         
-    if message.content.startswith("adDM"):
-        a = message.content.split(" ")
-        target1 = a[1]
-        author = target1[2:21]
-        await message.author.send(message.author.name + "님이 보낸 메세지입니다. " + str(a[2]))
-          
-    if message.content.startswith("ad따라해"):
-        msg = message.content[6:] #할말 보내는거
-        await message.channel.send(msg) #할말 보내는거
+   
         
     if message.content.startswith("ad주사위"):
         num = message.content[6:]

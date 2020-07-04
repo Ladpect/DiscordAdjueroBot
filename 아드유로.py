@@ -25,7 +25,7 @@ async def 질문(ctx):
     q = ctx.message.content[5:]
     aa = random.randint(1, 2)
     aaa = "blank"
-    await ctx.send(f"그래. 질문이 `{q} `라고?")
+    await ctx.send(f"그래. 질문이 `{q}`(이)라고?")
     await asyncio.sleep(1)
     a = await ctx.send("음... :thinking:")
     await asyncio.sleep(3)

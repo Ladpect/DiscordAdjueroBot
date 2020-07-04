@@ -836,7 +836,7 @@ async def 판매(ctx):
             t = 9
         elif mi == "염라석":
             sell = 15
-             t = 10
+            t = 10
         elif mi == "화석":
             sell = 25
             t = 11

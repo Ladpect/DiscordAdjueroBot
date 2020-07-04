@@ -623,7 +623,7 @@ async def 한영(ctx):
 
     url = "https://openapi.naver.com/v1/papago/n2mt"
     print(len(learn))
-    vrsize len(learn)  # 배열크기
+    vrsize = len(learn)  # 배열크기
     vrsize = int(vrsize)
     for i in range(1, vrsize): #띄어쓰기 한 텍스트들 인식함
         Text = Text+" "+learn[i]

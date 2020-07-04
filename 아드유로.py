@@ -54,24 +54,17 @@ async def 광산건설(ctx):
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     else:
-        coin = str(result[2])
-        if not int(coin) > 99:
-            await ctx.send(f"광산을 건설하는데엔 100유로가 필요합니다. {ctx.author.name}님은 {coin} :euro:를 소지하고 계십니다.")
-        else:
-            sql = (f"UPDATE cm SET miner = ?, 지비석 = ?, 삼다석 = ?, 방패석 = ? WHERE user_id = ?")
-            val = (1, 0, 0, 0, ctx.author.id)
-            cursor.execute(sql, val)
-            sql3 = (f"UPDATE cm SET 로아석 = ?, 초아석 = ?, 염라석 = ?, 화석 = ?, 태양석 = ?, 사랑석 = ?, 아드석 = ? WHERE user_id = ?")
-            val3 = (0, 0, 0, 0, 0, 0, 0, ctx.author.id)
-            cursor.execute(sql3, val3)
-            sql1 = ("UPDATE cm SET coin = ? WHERE user_id = ?")
-            val1 = (int(int(coin) - 100), ctx.author.id)
-            cursor.execute(sql1, val1)
-            sql2 = ("UPDATE cm SET mine = ? WHERE user_id = ?")
-            val2 = ("T", ctx.author.id)
-            cursor.execute(sql2, val2)
-            db.commit()
-            await ctx.send("100 :euro: 를 사용해 광산을 만들었습니다!")
+        sql = (f"UPDATE cm SET miner = ?, 지비석 = ?, 삼다석 = ?, 방패석 = ? WHERE user_id = ?")
+        val = (1, 0, 0, 0, ctx.author.id)
+        cursor.execute(sql, val)
+        sql3 = (f"UPDATE cm SET 로아석 = ?, 초아석 = ?, 염라석 = ?, 화석 = ?, 태양석 = ?, 사랑석 = ?, 아드석 = ? WHERE user_id = ?")
+        val3 = (0, 0, 0, 0, 0, 0, 0, ctx.author.id)
+        cursor.execute(sql3, val3)
+        sql2 = ("UPDATE cm SET mine = ? WHERE user_id = ?")
+        val2 = ("T", ctx.author.id)
+        cursor.execute(sql2, val2)
+        db.commit()
+        await ctx.send(f"{ctx.author.name}님의 광산을 만들었습니다!")
 
 @client.command(pass_context=True)
 async def 광산(ctx):
@@ -82,7 +75,7 @@ async def 광산(ctx):
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     elif result[3] == "F":
-        await ctx.send("100 :euro: 를 모아 `ad광산건설`을 통해 광산을 먼저 만들어주세요!")
+        await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
     else:
         embed = discord.Embed(title=f":pick: {ctx.author.name}님의 창고 :pick:", description="아드광산", color=0x4641D9)
         embed.add_field(name=":pick: 광부 :pick:", value=f"{result[4]}명", inline=False)
@@ -134,7 +127,7 @@ async def 채굴(ctx):
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     elif result[3] == "F":
-        await ctx.send("100 :euro: 를 모아 `ad광산건설`을 통해 광산을 먼저 만들어주세요!")
+        await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
     else:
         msg = await ctx.send(":pick: 채굴을 시작합니다 :pick:")
         await asyncio.sleep(sl)
@@ -919,7 +912,7 @@ async def on_message(message):
         if result is None:
             await message.channel.send("`ad가입`을 통해 가입을 해주세요.")
         elif result[3] == "F":
-            await message.channel.send("100 :euro: 를 모아 `ad광산건설`을 통해 광산을 먼저 만들어주세요!")
+            await message.channel.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
         else:
             if mi == "지비석":
                 sell = 1

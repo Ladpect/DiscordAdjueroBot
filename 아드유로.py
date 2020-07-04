@@ -258,7 +258,7 @@ async def 도움(ctx):
 @client.command()
 async def 광산도움(ctx):
     embed3 = discord.Embed(title=":pick: 아드광산 :pick:", color=0x4641D9)
-    embed3.add_field(nae="`ad가입`", value="가입합니다.", inline=False)
+    embed3.add_field(name="`ad가입`", value="가입합니다.", inline=False)
     embed3.add_field(name="`ad지갑`", value="아드코인 소유량을 확인합니다.", inline=False)
     embed3.add_field(name="`ad광산건설`", value="자신의 광산을 짓습니다", inline=False)
     embed3.add_field(name="`ad광산`", value="광부 수, 광물 수를 확인합니다", inline=False)

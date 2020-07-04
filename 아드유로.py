@@ -17,6 +17,24 @@ async def on_ready():
 async def 따라해(ctx, *, msg):
     await ctx.channel.purge(limit=1)
     await ctx.send(msg)
+    
+@client.command(pass_content=True)
+async def 질문(ctx):
+    await ctx.send("안녕. 난 `마법의 아드곶둥`이야.")
+    await asyncio.sleep(1)
+    q = ctx.message.content[5:]
+    aa = random.randint(1, 2)
+    aaa = "blank"
+    await ctx.send(f"그래. 질문이 `{q} `라고?")
+    await asyncio.sleep(1)
+    a = await ctx.send("음... :thinking:")
+    await asyncio.sleep(3)
+    if aa == 1:
+        aaa = "그래"
+    elif aa == 2:
+        aaa = "안돼"
+    await a.edit(content=aaa)
+
 
 @client.command(pass_content=True)
 async def 삭제(ctx, a):
@@ -101,7 +119,7 @@ async def 광부고용(ctx):
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     elif result[3] == "F":
-        await ctx.send("100 :euro: 를 모아 `ad광산건설`을 통해 광산을 먼저 만들어주세요!")
+        await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
     elif not int(result[2]) >= int(100 + int(result[4] * 6000)):
         await ctx.send("광부를 고용하는데엔 " + str(int(100 + int(result[4] * 6000))) + f":euro: 의 비용이 소요됩니다. {ctx.author.name}님은 현재 {result[2]} :euro: 를 가지고 계십니다.")
     else:
@@ -213,20 +231,14 @@ async def on_message(message):
     if message.content in ["아듀로 안녕", "ad안녕"]:
         await message.channel.send("안녕")
         #channel을 author로 바꾸면 DM으로 감
-
-    if message.content in ["아듀로 정체", "ad정체"]:
-        await message.channel.send("우주에서 온 이상한 사람")
-                           
-    if message.content in ["아듀로 고마워", "ad고마워"]:
-        await message.channel.send("당신의 칭찬에 찬사를!")
         
     if message.content in ["아듀로 도움", "ad도움", "adhelp"]:
-        embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 '아듀로 (명령어)' 또는 ad(명령어)야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
+        embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 ad(명령어)야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
         embed.add_field(name="관리", value="`ad삭제 {삭제량}`", inline=False)
-        embed.add_field(name="대화", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}` 등등... `ad대도`에서 확인하세요", inline=False)
-        embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영` 등등...`ad이도`에서 확인하세요", inline=False)
-        embed.add_field(name="기타", value="`adDM {유저ID} {할말}`, `ad거꾸로 {할말}`", inline=False)
+        embed.add_field(name="대화", value="`ad대화 도움` 또는 `ad대도`에서 확인하세요", inline=False)
+        embed.add_field(name="이미지", value="`ad이미지 도움` 또는 `ad이도`에서 확인하세요", inline=False)
+        embed.add_field(name="기타", value="`ad거꾸로 {할말}`, `ad질문 {질문}`(O 또는 X만 가능)", inline=False)
         embed.add_field(name="각종 공식", value="`ad에너지 {질량값}`, `ad제곱 {숫자}`, `ad루트 {숫자} {근}`", inline=False)
         embed.add_field(name="게임", value="`ad룰렛`", inline=False)
         embed.add_field(name="밀크초코 온라인", value="`ad밀초 도움`", inline=False)
@@ -242,7 +254,7 @@ async def on_message(message):
         embed3 = discord.Embed(title=":pick: 아드광산 :pick:", color=0x4641D9)
         embed3.add_field(name="`ad가입`", value="가입합니다.", inline=False)
         embed3.add_field(name="`ad지갑`", value="아드코인 소유량을 확인합니다.", inline=False)
-        embed3.add_field(name="`ad광산건설`", value="50 :euro: 로 광산을 짓습니다", inline=False)
+        embed3.add_field(name="`ad광산건설`", value="자신의 광산을 짓습니다", inline=False)
         embed3.add_field(name="`ad광산`", value="광부 수, 광물 수를 확인합니다", inline=False)
         embed3.add_field(name="`ad채굴`", value="채굴합니다. 무작위로 광물 종류와 갯수가 정해집니다.", inline=False)
         embed3.add_field(name="`ad광부고용`", value="광부를 고용합니다. 광부가 많을수록 채굴량이 많아집니다.", inline=False)
@@ -252,13 +264,13 @@ async def on_message(message):
     if message.content in ["ad대화 도움", "ad대도"]:
         embed = discord.Embed(title="대화명령어들!", description="말해라 아듀로 봇", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="대화명령어", value="`ad고마워`, `ad정체`, `ad안녕`, `ad따라해 {할말}`, `ad주사위 {숫자}`, `ad잘했어`, `ad나 어때?`, `ad레니`", inline=False)
+        embed.add_field(name="대화명령어", value="`ad안녕`, `ad따라해 {할말}`, `ad주사위 {숫자}`, `ad잘했어`, `ad나 어때?`, `ad레니`", inline=False)
         await message.channel.send(embed=embed)
         
     if message.content in ["ad이미지 도움", "ad이도"]:
         embed = discord.Embed(title="이미지명령어들", description="이미지 노예 아듀로 봇", color=0x4641D9)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-        embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영`, `ad햄스터`, `ad프로필`, `ad둘기이마트`, `ad김치싸대기`, `ad김치수거`, `ad비프로스트`, `ad이건 좀`, `ad변신`, `adㅌㅌ`, `ad박수`, `ad충격`, `ad처형`, `ad토마스`, `ad포나춤`, `ad샌즈`", inline=False)
+        embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영`, `ad김치싸대기`, `ad김치수거`, `adㅌㅌ`, `ad포나춤`, `ad샌즈`, `ad시공`", inline=False)
         await message.channel.send(embed=embed)
     
     if message.content in ["아듀로 나 어때?", "ad나 어떄?"]:
@@ -307,18 +319,6 @@ async def on_message(message):
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/685874314138222640/JPEG_20180922_092147.jpg")
         embed.set_footer(text="폭8이다!.")
         await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 햄스터", "ad햄스터"]:
-        embed = discord.Embed(title="햄스터?", description="정체불명", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/685874094411087988/hamster.jpg")
-        embed.set_footer(text="나는 그냥 햄스터다 인간들아")
-        await message.channel.send("아듀로 이미지", embed=embed)
-        
-    if message.content in ["아듀로 둘기이마트", "ad둘기이마트"]:
-        embed = discord.Embed(title="둘기는 이마트를 좋아해", description="난나난나나나나", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/686185101700104215/KakaoTalk_20200308_200354653.jpg")
-        embed.set_footer(text="이마트는 둘기를 싫어합니다")
-        await message.channel.send("아듀로 이미지", embed=embed)
         
     if message.content in ["아듀로 김치수거", "ad김치수거"]:
         embed = discord.Embed(title="김치수거중", description="내 아까운 김치", color=0x4641D9)
@@ -332,64 +332,16 @@ async def on_message(message):
         embed.set_footer(text="김치워리어 운다")
         await message.channel.send("아듀로 이미지", embed=embed)
 
-    if message.content in ["아듀로 이건 좀", "ad이건 좀"]:
-        embed = discord.Embed(title="김동지", description="이건 좀...", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311196884926464/036320e13456ba4a.gif")
-        embed.set_footer(text="쓰읍")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 비프로스트", "ad비프로스트"]:
-        embed = discord.Embed(title="휴대용입니다.", description="접속이다", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311195068923942/8695d6e35b46b6df.gif")
-        embed.set_footer(text="시공의 폭ㅍ...")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 변신", "ad변신"]:
-        embed = discord.Embed(title="짜잔!", description="난 이제 달라.", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311202497298436/9d89fa7a4cb65379.gif")
-        embed.set_footer(text="양자중첩상태.")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
     if message.content in ["아듀로 ㅌㅌ", "adㅌㅌ"]:
         embed = discord.Embed(title="모두 다음에 만나요", description="사라짐", color=0x4641D9)
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311120640999425/1583662278990.gif")
         embed.set_footer(text="잘가")
         await message.channel.send("아듀로 이미지", embed=embed)
 
-    if message.content in ["아듀로 던져", "ad던져"]:
-        embed = discord.Embed(title="throw away", description="던질까 말까", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311118967734285/1583592857865.gif")
-        embed.set_footer(text="찌리찌리 짜라짜라")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 박수", "ad박수"]:
-        embed = discord.Embed(title="짝짝짝", description="와아아아아아아아", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311243890622464/f2e28e1276d65f5f.gif")
-        embed.set_footer(text="이 다음 장면은 누가 나올까요?")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 충격", "ad충격"]:
-        embed = discord.Embed(title="주르륵", description="뭐라고?", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311242573742167/b5562f1645977f2a.gif")
-        embed.set_footer(text="오렌지 쥬스 아깝다")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 처형", "ad처형"]:
-        embed = discord.Embed(title="석양이 진다", description="탕탕탕", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311714239873026/1544234146072.gif")
-        embed.set_footer(text="무한 총알인거임ㅋㅋㅋㅋ")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
     if message.content in ["아듀로 시공", "ad시공"]:
         embed = discord.Embed(title="시공의 폭풍은 정말 최고야!", description="히오스", color=0x4641D9)
         embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311711677415424/1535025935602.gif")
         embed.set_footer(text="히오스는 최고가 맞습니다. 맞다고요")
-        await message.channel.send("아듀로 이미지", embed=embed)
-
-    if message.content in ["아듀로 토마스", "ad토마스"]:
-        embed = discord.Embed(title="돌진조아", description="돌진의 대가", color=0x4641D9)
-        embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/689005281400848421/KakaoTalk_20200316_130958972.jpg")
-        embed.set_footer(text="빠밤빠빠-빠빠빰 빠밤빠빰-빠라빰-빠빠라-빠라빠라빠라")
         await message.channel.send("아듀로 이미지", embed=embed)
         
     if message.content in ["아듀로 포나춤", "ad포나춤"]:
@@ -404,54 +356,10 @@ async def on_message(message):
         embed.set_footer(text="(SANS LAUGH)")
         await message.channel.send("아듀로 이미지", embed=embed)
         
-    if message.content in ["ad고양이", "아듀로 고양이"]:
-        await message.channel.send("현재 이 명령어를 사용할 수 없습니다. 이상한 사진이 나오던 문제를 해결할 시 다시 재가동 시킬 예정입니다.")
-        #embed = discord.Embed(
-            #title="야옹",
-            #description="냥냥파는 승리한다",
-            #color=0x4641D9
-        #)
-
-        #urlBase = 'https://loremflickr.com/320/240?lock='
-        #randomN = random.randrange(1, 30977)
-        #urlF = urlBase + str(randomN)
-        #embed.set_image(url = urlF)
-        #await message.channel.send(embed=embed)
-
-    if message.content in ["아듀로 강아지", "ad강아지"]:
-        await message.channel.send("현재 이 명령어를 사용할 수 없습니다. 이상한 사진이 나오던 문제를 해결할 시 다시 재가동 시킬 예정입니다.")
-        #embed = discord.Embed(
-            #title="멍멍",
-            #description="뭉멍파는 승리한다",
-            #color=0x4641D9
-        #)
-
-        #urlBase = 'https://loremflickr.com/320/240/dog?lock='
-        #randomN = random.randrange(1, 30977)
-        #urlF = urlBase + str(randomN)
-        #embed.set_image(url = urlF)
-        #await message.channel.send(embed=embed)
-        
-    if message.content.startswith("ad채널확성기"):
-        channel = message.content[8:27] #채널 아이디는 18자, ?번째 글자와 ?번째 글자 사이에 그거 
-        msg = message.content[27:] #할말 보내는거
-        await client.get_channel(int(channel)).send(msg) #채널 그게 정수값으로 해서 그채널 보내게 함
-        
-   
-        
     if message.content.startswith("ad주사위"):
         num = message.content[6:]
         op = random.randint(0, int(num))
         await message.channel.send(op)
-
-    
-    #if message.content == "아듀로 시간":
-        #a = datetime.datetime.today().year
-        #b = datetime.datetime.today().month
-        #c = datetime.datetime.today().day
-        #d = datetime.datetime.today().hour
-        #e = datetime.datetime.today().minute
-        #await message.channel.send("지금의 시간은 " + str(a) + "년 " + str(b) + "월 " + str(c) + "일 " + str(d) + "시 " + str(e) + "분 입니다")
 
     if message.content == "ad밀초 도움":
         embed = discord.Embed(title="아듀로 봇의 밀초 정보 저장소", description="영웅들과 총 정보 등등 많은 정보를 제공합니다", color=0x4641D9)

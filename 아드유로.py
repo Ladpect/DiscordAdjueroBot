@@ -518,7 +518,6 @@ async def 캐로그(ctx):
     
 @client.command()
 async def 휠레그(ctx):
-    if message.content.startswith("ad휠레그"):
     embed = discord.Embed(title="밀초 캐릭터 정보 : 휠레그", description="**FAST**", color=0x4641D9)
     embed.add_field(name="체력", value="190", inline=True)
     embed.add_field(name="배리어/배리어 충전량", value="X", inline=True)

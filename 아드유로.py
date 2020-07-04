@@ -250,7 +250,7 @@ async def 도움(ctx):
     embed.add_field(name="아드코인", value="`ad광산도움`", inline=False)
     embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
     embed.set_footer(text="자주 봐두면 좋아!")
-    await message.channel.send("도움이 필요하신가요?", embed=embed)
+    await ctx.send("도움이 필요하신가요?", embed=embed)
     embed2 = discord.Embed(title="문의", description="문의", color=0x4641D9)
     embed2.add_field(name="문의방법", value="`adjuero#5331`로 DM주시면 됩니다", inline=False)
     await ctx.send(embed=embed2)

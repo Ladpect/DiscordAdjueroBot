@@ -804,10 +804,7 @@ async def 지갑(ctx):
         await message.channel.send(embed=embed)
         
 @client.command(pass_content=True)
-async def 판매(ctx):
-    sp = ctx.message.content.split(" ")
-    mi = sp[1]
-    nu = sp[2]
+async def 판매(ctx, mi, nu):
     sell = 0
     t = 0
     db = sqlite3.connect('adjuero.db')

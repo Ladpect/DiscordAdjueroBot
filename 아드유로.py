@@ -278,7 +278,7 @@ async def 대화(ctx):
 async def 이미지(ctx):
     embed = discord.Embed(title="이미지명령어들", description="이미지 노예 아듀로 봇", color=0x4641D9)
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
-    embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영`, `ad김치싸대기`, `ad김치수거`, `adㅌㅌ`, `ad포나춤`, `ad샌즈`, `ad시공`", inline=False)
+    embed.add_field(name="이미지", value="`ad김두한`, `ad물리치료사`, `ad심영`, `ad김치싸대기`, `ad김치수거`, `ad탈주`, `ad포나춤`, `ad샌즈`, `ad시공`", inline=False)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -328,7 +328,7 @@ async def 김치싸대기(ctx):
     await ctx.send(embed=embed)
     
 @client.command()
-async def ㅌㅌ(ctx):
+async def (ctx):
     embed = discord.Embed(title="모두 다음에 만나요", description="GONE", color=0x4641D9)
     embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311120640999425/1583662278990.gif")
     embed.set_footer(text="잘가")

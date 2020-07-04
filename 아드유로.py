@@ -328,7 +328,7 @@ async def 김치싸대기(ctx):
     await ctx.send(embed=embed)
     
 @client.command()
-async def (ctx):
+async def 탈주(ctx):
     embed = discord.Embed(title="모두 다음에 만나요", description="GONE", color=0x4641D9)
     embed.set_image(url="https://cdn.discordapp.com/attachments/685873675555176492/688311120640999425/1583662278990.gif")
     embed.set_footer(text="잘가")

@@ -72,7 +72,7 @@ async def 광산건설(ctx):
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     elif result[3] == "T":
-        await ctx.send("{ctx.author.name}님은 이미 광산이 있습니다.")
+        await ctx.send(f"{ctx.author.name}님은 이미 광산이 있습니다.")
     else:
         sql = (f"UPDATE cm SET miner = ?, 지비석 = ?, 삼다석 = ?, 방패석 = ? WHERE user_id = ?")
         val = (1, 0, 0, 0, ctx.author.id)

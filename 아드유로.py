@@ -32,7 +32,7 @@ async def 질문(ctx):
     if aa == 1:
         aaa = "그래"
     elif aa == 2:
-        aaa = ""
+        aaa = "아니"
     await a.edit(content=aaa)
 
 

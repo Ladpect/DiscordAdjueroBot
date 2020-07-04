@@ -809,7 +809,7 @@ async def 판매(ctx, mi, nu):
     t = 0
     db = sqlite3.connect('adjuero.db')
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{message.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")

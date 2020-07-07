@@ -711,10 +711,10 @@ async def 프로필(ctx):
 async def 룰렛(ctx):
     db = sqlite3.connect('adjuero.db')
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id FROM cm WHERE user_id = '{message.author.id}'")
+    cursor.execute(f"SELECT user_id FROM cm WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
     if result is None:
-        await message.channel.send("`ad가입`을 통해 가입해주세요.")
+        await ctx.channel.send("`ad가입`을 통해 가입해주세요.")
     else:
         mention = ctx.author.mention
         num1 = random.randint(0, 10)
@@ -795,15 +795,15 @@ async def 룰렛(ctx):
 async def 지갑(ctx):
     db = sqlite3.connect('adjuero.db')
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{message.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
     if result is None:
-        await message.channel.send("`ad가입`을 통해 가입을 해주세요.")
+        await ctx.channel.send("`ad가입`을 통해 가입을 해주세요.")
     else:
         coin = str(result[2])
-        embed = discord.Embed(title=f"{message.author.name}님의 :euro: 지갑 :euro:", color=0x4641D9)
+        embed = discord.Embed(title=f"{ctx.author.name}님의 :euro: 지갑 :euro:", color=0x4641D9)
         embed.add_field(name="아드코인", value=coin + " :euro:", inline=True)
-        await message.channel.send(embed=embed)
+        await ctx.channel.send(embed=embed)
         
 @client.command(pass_content=True)
 async def 판매(ctx, mi, nu):

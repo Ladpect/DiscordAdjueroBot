@@ -788,8 +788,8 @@ async def 룰렛(ctx):
             await ctx.send(f"{coi} :euro: 얻었습니다!")
         else:
             embed.add_field(name="result", value="YEAHHHHHH", inline=False)
-        await message.channel.send(embed=embed)
-        await message.channel.send(mention)
+        await ctx.channel.send(embed=embed)
+        await ctx.channel.send(mention)
         
 @client.command(pass_content=True)
 async def 지갑(ctx):

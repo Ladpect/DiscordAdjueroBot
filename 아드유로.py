@@ -205,7 +205,7 @@ async def 채굴(ctx):
         else:
             m = ":new_moon: 돌 :new_moon:"
             num = "여러"
-        await msg.edit(content=f"{m}을 {str(num}개 얻었다!")
+        await msg.edit(content=f"{m}을 {str(num)}개 얻었다!")
 
 @client.command(pass_content=True)
 async def 지갑(ctx):

@@ -132,77 +132,80 @@ async def 채굴(ctx):
     else:
         msg = await ctx.send(":pick: 채굴을 시작합니다 :pick:")
         await asyncio.sleep(5)
-        if pro >= 1 and pro <= 23:
+        if pro >= 1 and pro <= 13:
             m = ":dove: 지비석 :dove:"
             num = random.randint(5, 17)
             sql = (f"UPDATE cm SET 지비석 = ? WHERE user_id = ?")
-            val = (int(result[5]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[5]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 24 and pro <= 39:
+        elif pro >= 14 and pro <= 25:
             m = ":droplet: 삼다석 :droplet:"
             num = random.randint(4, 12)
             sql = (f"UPDATE cm SET 삼다석 = ? WHERE user_id = ?")
-            val = (int(result[6]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[6]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 40 and pro <= 51:
+        elif pro >= 26 and pro <= 37:
             m = ":shield: 방패석 :shield:"
             num = random.randint(3, 9)
             sql = (f"UPDATE cm SET 방패석 = ? WHERE user_id = ?")
-            val = (int(result[7]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[7]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 52 and pro <= 65:
+        elif pro >= 38 and pro <= 46:
             m = ":full_moon: 로아석 :full_moon:"
             num = random.randint(2, 6)
             sql = (f"UPDATE cm SET 로아석 = ? WHERE user_id = ?")
-            val = (int(result[8]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[8]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 66 and pro <= 78:
+        elif pro >= 47 and pro <= 55:
             m = ":dizzy: 초아석 :dizzy:"
             num = random.randint(3, 6)
             sql = (f"UPDATE cm SET 초아석 = ? WHERE user_id = ?")
-            val = (int(result[9]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[9]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 79 and pro <= 85:
+        elif pro >= 56 and pro <= 61:
             m = ":fire: 염라석 :fire:"
             num = random.randint(2, 5)
             sql = (f"UPDATE cm SET 염라석 = ? WHERE user_id = ?")
-            val = (int(result[10]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[10]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 86 and pro <= 90:
+        elif pro >= 62 and pro <= 69:
             m = ":bone: 화석 :bone:"
             num = random.randint(2, 8)
             sql = (f"UPDATE cm SET 화석 = ? WHERE user_id = ?")
-            val = (int(result[11]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[11]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 91 and pro <= 95:
+        elif pro >= 70 and pro <= 75:
             m = ":sun_with_face: 태양석 :sun_with_face:"
             num = random.randint(2, 6)
             sql = (f"UPDATE cm SET 태양석 = ? WHERE user_id = ?")
-            val = (int(result[12]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[12]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 96 and pro <= 98:
+        elif pro >= 76 and pro <= 79:
             m = ":heart: 사랑석 :heart"
             num = random.randint(2, 6)
             sql = (f"UPDATE cm SET 사랑석 = ? WHERE user_id = ?")
-            val = (int(result[13]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[13]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro >= 99 and pro <= 100:
+        elif pro = 80:
             m = ":boom: 아드석 :boom:"
             num = random.randint(1, 5)
             sql = (f"UPDATE cm SET 아드석 = ? WHERE user_id = ?")
-            val = (int(result[14]) + int(int(num) * int(result[4])), ctx.author.id)
+            val = (int(result[14]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        await msg.edit(content=f"{m}을 {str(num * result[4])}개 얻었다! (광부가 {result[4]}명이어서 {result[4]}배를 얻습니다!)")
+        else:
+            m = ":new_moon: 돌 :new_moon:"
+            num = "여러"
+        await msg.edit(content=f"{m}을 {str(num}개 얻었다!")
 
 @client.command(pass_content=True)
 async def 지갑(ctx):

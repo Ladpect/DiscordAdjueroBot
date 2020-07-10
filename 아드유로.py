@@ -92,7 +92,7 @@ async def 광산건설(ctx):
 async def 광산(ctx):
     db = sqlite3.connect('adjuero.db')
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin, mine, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
@@ -100,7 +100,6 @@ async def 광산(ctx):
         await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
     else:
         embed = discord.Embed(title=f":pick: {ctx.author.name}님의 창고 :pick:", description="아드광산", color=0x4641D9)
-        embed.add_field(name=":pick: 광부 :pick:", value=f"{result[4]}명", inline=False)
         embed.add_field(name=":dove: 지비석 :dove:", value=f"{result[5]}개", inline=True)
         embed.add_field(name=":droplet: 삼다석 :droplet:", value=f"{result[6]}개", inline=True)
         embed.add_field(name=":shield: 방패석 :shield:", value=f"{result[7]}개", inline=True)
@@ -115,31 +114,11 @@ async def 광산(ctx):
 
 @client.command(pass_context=True)
 async def 광부고용(ctx):
-    db = sqlite3.connect('adjuero.db')
-    cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
-    result = cursor.fetchone()
-    miner = int(100 + int(result[4] * 6000))
-    if result is None:
-        await ctx.send("`ad가입`을 통해 가입을 해주세요.")
-    elif result[3] == "F":
-        await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
-    elif not int(result[2]) >= int(100 + int(result[4] * 6000)):
-        await ctx.send("광부를 고용하는데엔 " + str(int(100 + int(result[4] * 6000))) + f":euro: 의 비용이 소요됩니다. {ctx.author.name}님은 현재 {result[2]} :euro: 를 가지고 계십니다.")
-    else:
-        sql = (f"UPDATE cm SET coin = ? WHERE user_id = ?")
-        val = (int(result[2] - miner), ctx.author.id)
-        cursor.execute(sql, val)
-        sql1 = (f"UPDATE cm SET miner = ? WHERE user_id = ?")
-        val1 = (int(result[4] + 1), ctx.author.id)
-        cursor.execute(sql1, val1)
-        db.commit()
-        await ctx.send("광부를 고용하였습니다!")
+    await ctx.send("요즘 고용시장이 침체기를 맞아 광부로 쓸 사람이 안보인다.")
 
 @client.command(pass_context=True)
 async def 채굴(ctx):
     pro = random.randint(1, 100)
-    sl = random.randint(5, 10)
     m = "blank"
     num = 0
     db = sqlite3.connect('adjuero.db')
@@ -152,7 +131,7 @@ async def 채굴(ctx):
         await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
     else:
         msg = await ctx.send(":pick: 채굴을 시작합니다 :pick:")
-        await asyncio.sleep(sl)
+        await asyncio.sleep(5)
         if pro >= 1 and pro <= 23:
             m = ":dove: 지비석 :dove:"
             num = random.randint(5, 17)
@@ -225,7 +204,82 @@ async def 채굴(ctx):
             db.commit()
         await msg.edit(content=f"{m}을 {str(num * result[4])}개 얻었다! (광부가 {result[4]}명이어서 {result[4]}배를 얻습니다!)")
 
-
+@client.command(pass_content=True)
+async def 지갑(ctx):
+    db = sqlite3.connect('adjuero.db')
+    cursor = db.cursor()
+    cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{ctx.author.id}'")
+    result = cursor.fetchone()
+    if result is None:
+        await ctx.channel.send("`ad가입`을 통해 가입을 해주세요.")
+    else:
+        coin = str(result[2])
+        embed = discord.Embed(title=f"{ctx.author.name}님의 :euro: 지갑 :euro:", color=0x4641D9)
+        embed.add_field(name="아드코인", value=coin + " :euro:", inline=True)
+        await ctx.channel.send(embed=embed)
+        
+@client.command(pass_content=True)
+async def 판매(ctx, mi, nu):
+    sell = 0
+    t = 0
+    db = sqlite3.connect('adjuero.db')
+    cursor = db.cursor()
+    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
+    result = cursor.fetchone()
+    if result is None:
+        await ctx.send("`ad가입`을 통해 가입을 해주세요.")
+    elif result[3] == "F":
+        await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
+    else:
+        if mi == "지비석":
+            sell = 1
+            t = 5
+        elif mi == "삼다석":
+            sell = 3
+            t = 6
+        elif mi == "방패석":
+            sell = 5
+            t = 7
+        elif mi == "로아석":
+            sell = 10
+            t = 8
+        elif mi == "초아석":
+            sell = 13
+            t = 9
+        elif mi == "염라석":
+            sell = 15
+            t = 10
+        elif mi == "화석":
+            sell = 25
+            t = 11
+        elif mi == "태양석":
+            sell = 30
+            t = 12
+        elif mi == "사랑석":
+            sell = 50
+            t = 13
+        elif mi == "아드석":
+            sell = 100
+            t = 14
+        if (str(type(nu)) == "<class 'int'>"):
+            if result[t] < int(nu):
+                await ctx.send(f"{ctx.author.name}님의 {mi}는 {result[t]}개입니다.")
+            else:
+                sql = (f"UPDATE cm SET coin = ?, {mi} = ? WHERE user_id = ?")
+                val = (int(result[2] + int(nu) * sell), int(result[t] - int(nu)), ctx.author.id)
+                cursor.execute(sql, val)
+                db.commit()
+                await ctx.send(f"{ctx.author.name}님은 {mi}를 판매하여 {int(nu) * sell} :euro: 를 얻었습니다!")
+        else:
+            if str(nu) == "모두":
+                if int(result[t]) == int(0):
+                    await ctx.send(f"{ctx.author.name}님은 {mi}을 보유하고 있지 않습니다.")
+                else:    
+                    sql = (f"UPDATE cm SET coin = ?, {mi} = ? WHERE user_id = ?")
+                    val = (int(result[2] + result[t] * sell), int(result[t] - result[t]), ctx.author.id)
+                    cursor.execute(sql, val)
+                    db.commit()
+                    await ctx.send(f"{ctx.author.name}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
     
 @client.event
 async def on_message(message):
@@ -791,82 +845,6 @@ async def 룰렛(ctx):
         await ctx.channel.send(embed=embed)
         await ctx.channel.send(mention)
         
-@client.command(pass_content=True)
-async def 지갑(ctx):
-    db = sqlite3.connect('adjuero.db')
-    cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin FROM cm WHERE user_id = '{ctx.author.id}'")
-    result = cursor.fetchone()
-    if result is None:
-        await ctx.channel.send("`ad가입`을 통해 가입을 해주세요.")
-    else:
-        coin = str(result[2])
-        embed = discord.Embed(title=f"{ctx.author.name}님의 :euro: 지갑 :euro:", color=0x4641D9)
-        embed.add_field(name="아드코인", value=coin + " :euro:", inline=True)
-        await ctx.channel.send(embed=embed)
-        
-@client.command(pass_content=True)
-async def 판매(ctx, mi, nu):
-    sell = 0
-    t = 0
-    db = sqlite3.connect('adjuero.db')
-    cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
-    result = cursor.fetchone()
-    if result is None:
-        await ctx.send("`ad가입`을 통해 가입을 해주세요.")
-    elif result[3] == "F":
-        await ctx.send("`ad광산건설`을 통해 광산을 먼저 만들어주세요!")
-    else:
-        if mi == "지비석":
-            sell = 1
-            t = 5
-        elif mi == "삼다석":
-            sell = 3
-            t = 6
-        elif mi == "방패석":
-            sell = 5
-            t = 7
-        elif mi == "로아석":
-            sell = 10
-            t = 8
-        elif mi == "초아석":
-            sell = 13
-            t = 9
-        elif mi == "염라석":
-            sell = 15
-            t = 10
-        elif mi == "화석":
-            sell = 25
-            t = 11
-        elif mi == "태양석":
-            sell = 30
-            t = 12
-        elif mi == "사랑석":
-            sell = 50
-            t = 13
-        elif mi == "아드석":
-            sell = 100
-            t = 14
-        if (str(type(nu)) == "<class 'int'>"):
-            if result[t] < int(nu):
-                await ctx.send(f"{ctx.author.name}님의 {mi}는 {result[t]}개입니다.")
-            else:
-                sql = (f"UPDATE cm SET coin = ?, {mi} = ? WHERE user_id = ?")
-                val = (int(result[2] + int(nu) * sell), int(result[t] - int(nu)), ctx.author.id)
-                cursor.execute(sql, val)
-                db.commit()
-                await ctx.send(f"{ctx.author.name}님은 {mi}를 판매하여 {int(nu) * sell} :euro: 를 얻었습니다!")
-        else:
-            if str(nu) == "모두":
-                if int(result[t]) == int(0):
-                    await ctx.send(f"{ctx.author.name}님은 {mi}을 보유하고 있지 않습니다.")
-                else:    
-                    sql = (f"UPDATE cm SET coin = ?, {mi} = ? WHERE user_id = ?")
-                    val = (int(result[2] + result[t] * sell), int(result[t] - result[t]), ctx.author.id)
-                    cursor.execute(sql, val)
-                    db.commit()
-                    await ctx.send(f"{ctx.author.name}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
     
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token, bot=True, reconnect=True)

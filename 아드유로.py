@@ -76,8 +76,8 @@ async def 광산건설(ctx):
     elif result[3] == "T":
         await ctx.send(f"{ctx.author.name}님은 이미 광산이 있습니다.")
     else:
-        sql = (f"UPDATE cm SET miner = ?, 지비석 = ?, 삼다석 = ?, 방패석 = ? WHERE user_id = ?")
-        val = (1, 0, 0, 0, ctx.author.id)
+        sql = (f"UPDATE cm SET 지비석 = ?, 삼다석 = ?, 방패석 = ? WHERE user_id = ?")
+        val = (0, 0, 0, ctx.author.id)
         cursor.execute(sql, val)
         sql3 = (f"UPDATE cm SET 로아석 = ?, 초아석 = ?, 염라석 = ?, 화석 = ?, 태양석 = ?, 사랑석 = ?, 아드석 = ? WHERE user_id = ?")
         val3 = (0, 0, 0, 0, 0, 0, 0, ctx.author.id)
@@ -92,7 +92,7 @@ async def 광산건설(ctx):
 async def 광산(ctx):
     db = sqlite3.connect('adjuero.db')
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, mine, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin, mine, miner, 지비석, 삼다석, 방패석, 로아석, 초아석, 염라석, 화석, 태양석, 사랑석, 아드석 FROM cm WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
@@ -195,7 +195,7 @@ async def 채굴(ctx):
             val = (int(result[13]) + int(num), ctx.author.id)
             cursor.execute(sql, val)
             db.commit()
-        elif pro = 80:
+        elif pro == 80:
             m = ":boom: 아드석 :boom:"
             num = random.randint(1, 5)
             sql = (f"UPDATE cm SET 아드석 = ? WHERE user_id = ?")

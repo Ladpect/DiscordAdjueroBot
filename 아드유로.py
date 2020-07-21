@@ -285,10 +285,9 @@ async def 판매(ctx, mi, nu):
                     await ctx.send(f"{ctx.author.name}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
     
 @client.event
-async def on_message(message):
-    if message.author.bot: #채팅친 놈이 봇이면 구문 종료
+async def on_message(ctx):
+    if ctx.author.bot: #채팅친 놈이 봇이면 구문 종료
         return None
-    await client.process_commands(message)
     
 @client.command(pass_content=True)
 async def 안녕(ctx):

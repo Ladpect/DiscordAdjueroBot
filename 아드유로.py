@@ -645,12 +645,11 @@ async def 타이머(ctx, time):
 
 @client.command(pass_content=True)
 async def 제곱(ctx, n, m):
-    if message.content.startswith("ad제곱"):
-        embed = discord.Embed(title="제곱", description="^", color=0x4641D9)
-        embed.add_field(name="1", value=n, inline=True)
-        embed.add_field(name="2", value=m, inline=True)
-        embed.add_field(name="결과", value="답은 " + str(int(n) ** int(m)) + " 입니다", inline=False)
-        await ctx.send(embed=embed)
+    embed = discord.Embed(title="제곱", description="^", color=0x4641D9)
+    embed.add_field(name="1", value=n, inline=True)
+    embed.add_field(name="2", value=m, inline=True)
+    embed.add_field(name="결과", value="답은 " + str(int(n) ** int(m)) + " 입니다", inline=False)
+    await ctx.send(embed=embed)
         
 @client.command(pass_content=True)
 async def 루트(ctx, n, m):
@@ -750,12 +749,12 @@ async def 영한(ctx):
         
 @client.command(pass_content=True)
 async def 프로필(ctx):
-    date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
+    date = datetime.datetime.utcfromtimestamp(((int(ctx.author.id) >> 22) + 1420070400000) / 1000)
     embed = discord.Embed(color=0x4641D9)
-    embed.add_field(name="이름", value=message.author.name, inline=True)
-    embed.add_field(name="서버닉넴", value=message.author.display_name, inline=True)
+    embed.add_field(name="이름", value=ctx.author.name, inline=True)
+    embed.add_field(name="서버닉넴", value=ctx.author.display_name, inline=True)
     embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일", inline=False)
-    embed.set_thumbnail(url=message.author.avatar_url)
+    embed.set_thumbnail(url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
         
 @client.command(pass_content=True)
@@ -812,8 +811,6 @@ async def 룰렛(ctx):
         embed.add_field(name="3", value=emo3, inline=True)
         if num1 == num2 == num3:
             embed.add_field(name="result", value="what the...", inline=False)
-            role = discord.utils.get(ctx.guild.roles, name="잭팟 당첨자")
-            await author.add_roles(role)
             await ctx.channel.send(ctx.author.mention + " :tada: 축하드립니다! :tada:")
             db = sqlite3.connect('adjuero.db')
             cursor = db.cursor()

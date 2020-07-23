@@ -1,6 +1,5 @@
 import discord, asyncio, random, datetime
-import os, sys, urllib.request, json
-import urllib, bs4, request
+import os, sys, json
 from discord.ext import commands
 import psycopg2
 from discord.ext.commands import CommandError

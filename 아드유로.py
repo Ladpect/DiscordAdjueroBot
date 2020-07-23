@@ -85,7 +85,7 @@ async def 가입(ctx):
         except asyncio.TimeoutError:
             await ctx.send("취소되었습니다.")
     else:
-        await ctx.send(f"{result[1]}님은 이미 가입되어 있습니다.")
+        await ctx.send(f"{ctx.author.name}님은 이미 가입되어 있습니다.")
 
 @client.command()
 async def 탈퇴(ctx):
@@ -126,11 +126,11 @@ async def 광산(ctx):
         embed = discord.Embed(title=f":pick: {result[1]}님의 창고 :pick:", description="아드광산", color=0x4641D9)
         embed.add_field(name=":dove: 둘기석 :dove:", value=f"{result[3]}개", inline=True)
         embed.add_field(name=":droplet: 삼다석 :droplet:", value=f"{result[4]}개", inline=True)
-        embed.add_field(name=":shield: 불즈석 :shield:", value=f"{result[5]}개", inline=True)
+        embed.add_field(name=":water_buffalo:  불즈석 :water_buffalo: ", value=f"{result[5]}개", inline=True)
         embed.add_field(name=":full_moon: 로아석 :full_moon:", value=f"{result[6]}개", inline=True)
-        embed.add_field(name=":dizzy: 에릭석 :dizzy:", value=f"{result[7]}개", inline=True)
+        embed.add_field(name=":sparkles: 에릭석 :sparkles: ", value=f"{result[7]}개", inline=True)
         embed.add_field(name=":fire: 염라석 :fire:", value=f"{result[8]}개", inline=True)
-        embed.add_field(name=":bone: 템프석 :bone:", value=f"{result[9]}개", inline=True)
+        embed.add_field(name=":classical_building: 템프석 :classical_building:", value=f"{result[9]}개", inline=True)
         embed.add_field(name=":sun_with_face: 태양석 :sun_with_face:", value=f"{result[10]}개", inline=True)
         embed.add_field(name=":heart: 사랑석 :heart:", value=f"{result[11]}개", inline=True)
         embed.add_field(name=":boom: 아드석 :boom:", value=f"{result[12]}개", inline=True)
@@ -164,7 +164,7 @@ async def 채굴(ctx):
             cursor.execute(sql)
             db.commit()
         elif pro >= 26 and pro <= 37:
-            m = ":shield: 불즈석 :shield:"
+            m = ":water_buffalo:  불즈석 :water_buffalo: "
             num = random.randint(3, 9)
             sql = (f"UPDATE 광산 SET 불즈석 = {int(result[5]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
@@ -176,7 +176,7 @@ async def 채굴(ctx):
             cursor.execute(sql)
             db.commit()
         elif pro >= 47 and pro <= 55:
-            m = ":dizzy: 에릭석 :dizzy:"
+            m = ":sparkles: 에릭석 :sparkles:"
             num = random.randint(3, 6)
             sql = (f"UPDATE 광산 SET 에릭석 = {int(result[7]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
@@ -188,7 +188,7 @@ async def 채굴(ctx):
             cursor.execute(sql)
             db.commit()
         elif pro >= 62 and pro <= 69:
-            m = ":bone: 템프석 :bone:"
+            m = ":classical_building: 템프석 :classical_building:"
             num = random.randint(2, 8)
             sql = (f"UPDATE 광산 SET 템프석 = {int(result[9]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)

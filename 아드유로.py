@@ -331,7 +331,7 @@ async def 광산도움(ctx):
     embed3.add_field(name="`ad탈퇴`", value="탈퇴합니다.", inline=False)
     embed3.add_field(name="`ad지갑`", value="아드코인 소유량을 확인합니다.", inline=False)
     embed3.add_field(name="`ad광산`", value="광부 수, 광물 수를 확인합니다", inline=False)
-    embed3.add_field(name="`ad채굴`", value="채굴합니다. 5초 쿨타임이", inline=False)
+    embed3.add_field(name="`ad채굴`", value="채굴합니다. 5초 쿨타임이 ", inline=False)
     embed3.add_field(name="`ad닉네임 {변경할 닉네임}`", value="닉네임을 변경합니다.", inline=False)
     embed3.add_field(name="`ad판매 {광물} {갯수(모두)}`", value="광물을 판매해 아드코인을 획득합니다.", inline=False)
     await ctx.send(embed=embed3)

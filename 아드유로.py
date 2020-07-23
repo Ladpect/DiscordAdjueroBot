@@ -319,7 +319,6 @@ async def 도움(ctx):
     embed.add_field(name="게임", value="`ad룰렛`", inline=False)
     embed.add_field(name="밀크초코 온라인", value="`ad밀초`", inline=False)
     embed.add_field(name="아드코인", value="`ad광산도움`", inline=False)
-    embed.add_field(name="번역", value="`ad한영`(한->영), `ad영한`(영->한)", inline=False)
     embed.set_footer(text="자주 봐두면 좋아!")
     await ctx.send("도움이 필요하신가요?", embed=embed)
     embed2 = discord.Embed(title="문의", description="문의", color=0x4641D9)
@@ -683,87 +682,6 @@ async def 거꾸로(ctx, *, say):
     embed.add_field(name="결과", value=":arrows_counterclockwise: " + " " + str(say[::-1]), inline=False)
     await ctx.send(embed=embed)
     
-@client.command(pass_content=True)
-async def 한영(ctx):
-    learn = ctx.message.content.split(" ")
-    Text = ""
-
-    client_id = "UPlhusJW5Lhg6SIKuzfm"
-    client_secret = "Lch08eFSWA"
-
-    url = "https://openapi.naver.com/v1/papago/n2mt"
-    print(len(learn))
-    vrsize = len(learn)  # 배열크기
-    vrsize = int(vrsize)
-    for i in range(1, vrsize): #띄어쓰기 한 텍스트들 인식함
-        Text = Text+" "+learn[i]
-    encText = urllib.parse.quote(Text)
-    data = "source=ko&target=en&text=" + encText
-
-    request = urllib.request.Request(url)
-    request.add_header("X-Naver-Client-Id", client_id)
-    request.add_header("X-Naver-Client-Secret", client_secret)
-
-    response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-
-    rescode = response.getcode()
-    if (rescode == 200):
-        response_body = response.read()
-        data = response_body.decode('utf-8')
-        data = json.loads(data)
-        tranText = data['message']['result']['translatedText']
-    else:
-        print("Error Code:" + rescode)
-
-    print('번역된 내용 :', tranText)
-
-    embed = discord.Embed(
-        title=':flag_kr: :arrow_right: :flag_um:',
-        description=tranText,
-        color=0x4641D9
-    )
-    await ctx.send(embed=embed)
-    
-@client.command(pass_content=True)
-async def 영한(ctx):
-    learn = ctx.message.content.split(" ")
-    Text = ""
-
-    client_id = "UPlhusJW5Lhg6SIKuzfm"
-    client_secret = "Lch08eFSWA"
-
-    url = "https://openapi.naver.com/v1/papago/n2mt"
-    print(len(learn))
-    vrsize = len(learn)  # 배열크기
-    vrsize = int(vrsize)
-    for i in range(1, vrsize): #띄어쓰기 한 텍스트들 인식함
-        Text = Text+" "+learn[i]
-    encText = urllib.parse.quote(Text)
-    data = "source=en&target=ko&text=" + encText
-
-    request = urllib.request.Request(url)
-    request.add_header("X-Naver-Client-Id", client_id)
-    request.add_header("X-Naver-Client-Secret", client_secret)
-
-    response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-
-    rescode = response.getcode()
-    if (rescode == 200):
-        response_body = response.read()
-        data = response_body.decode('utf-8')
-        data = json.loads(data)
-        tranText = data['message']['result']['translatedText']
-    else:
-        print("Error Code:" + rescode)
-
-    print('번역된 내용 :', tranText)
-
-    embed = discord.Embed(
-        title=':flag_um: :arrow_right: :flag_kr:',
-        description=tranText,
-        color=0x4641D9
-    )
-    await ctx.send(embed=embed)
         
         
 @client.command(pass_content=True)

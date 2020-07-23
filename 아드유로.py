@@ -12,7 +12,7 @@ db = psycopg2.connect(database="dc9hhd2o22qlo3",
                         port="5432")
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움&ad광산도움(Beta)"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("ad도움"))
     print("준비 되었다")
     print(client.user.name)
     print(client.user.id)

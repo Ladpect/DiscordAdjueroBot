@@ -291,34 +291,34 @@ async def 판매(ctx, mi, nu):
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     else:
         if mi == "둘기석":
-            sell = 1
+            sell = 3
             t = 3
         elif mi == "삼다석":
-            sell = 3
+            sell = 5
             t = 4
         elif mi == "불즈석":
-            sell = 5
+            sell = 10
             t = 5
         elif mi == "로아석":
-            sell = 10
+            sell = 15
             t = 6
         elif mi == "에릭석":
-            sell = 13
+            sell = 15
             t = 7
         elif mi == "염라석":
-            sell = 15
+            sell = 20
             t = 8
         elif mi == "템프석":
-            sell = 25
+            sell = 30
             t = 9
         elif mi == "태양석":
-            sell = 30
+            sell = 40
             t = 10
         elif mi == "사랑석":
-            sell = 50
+            sell = 60
             t = 11
         elif mi == "아드석":
-            sell = 100
+            sell = 150
             t = 12
         if str(nu) == "모두":
             if int(result[t]) == int(0):

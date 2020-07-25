@@ -380,7 +380,7 @@ async def 더블(ctx, bet):
     
 @client.command(pass_content=True)
 async def 안녕(ctx):
-    await ctx.send("안녕")
+    await ctx.send("ㅎㅇ")
         
         
 @client.command()

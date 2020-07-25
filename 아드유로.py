@@ -222,7 +222,7 @@ async def 채굴(ctx):
                 cursor.execute(sql)
                 db.commit()
             else:
-                sql = (f"UPDATE 광산 SET coin = {result[2] + money} WHERE user_id = {ctx.author.id};")
+                sql = (f"UPDATE 광산 SET coin = {int(result[2]) + money} WHERE user_id = {ctx.author.id};")
                 cursor.execute(sql)
                 db.commit()
         else:

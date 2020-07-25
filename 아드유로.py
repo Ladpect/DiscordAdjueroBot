@@ -337,6 +337,42 @@ async def 판매(ctx, mi, nu):
                 cursor.execute(sql)
                 db.commit()
                 await ctx.send(f"{result[1]}님은 {mi}를 판매하여 {int(nu) * sell} :euro: 를 얻었습니다!")
+                
+@client.command(pass_content=True)
+async def 더블(ctx, bet):
+    cursor = db.cursor()
+    cursor.execute(f"SELECT user_id, user_name, coin FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    result = cursor.fetchone()
+    if result is None:
+        await ctx.channel.send("`ad가입`을 통해 가입을 해주세요.")
+    if bet is None:
+        await ctx.send("베팅금액을 정해주세요.")
+    else:
+        embed = discord.Embed(title="double or nothing", description="묻고 더블로 가!", color=0x4641D9)
+        embed.add_field(name="설명", value="절반의 확률로 두배를 얻거나 전부 잃습니다.", inline=False)
+        embed.add_field(name="배팅금액", value=f"{bet} :euro:", inline=False)
+        await ctx.send(embed=embed)
+        b = await ctx.send("하시겠습니까?")
+        await b.add_reaction('⭕')
+        await b.add_reaction('❌')
+        try: 
+            reaction, user = await client.wait_for('reaction_add', timeout = 5, check = lambda reaction, user: user == ctx.author and str(reaction.emoji) in ['⭕', '❌'])
+            if str(reaction.emoji) == '⭕':
+                pro = random.randint(1, 2)
+                if pro == 1:
+                    sql = (f"UPDATE 광산 SET coin = {result[2] - int(bet)} WHERE user_id = {ctx.author.id};")
+                    cursor.execute(sql)
+                    db.commit()
+                    await ctx.send(f"이런... {bet} :euro: 를 잃었다...")
+                else:
+                    sql = (f"UPDATE 광산 SET coin = {result[2] + int(bet)} WHERE user_id = {ctx.author.id};")
+                    cursor.execute(sql)
+                    db.commit()
+                    await ctx.send(f":tada: 와! {bet} :euro: 를 얻었다! :tada:")
+            else:
+                await ctx.send("취소되었습니다.")
+        except asyncio.TimeoutError:
+            await ctx.send("취소되었습니다.")
     
     
 @client.command(pass_content=True)
@@ -372,6 +408,7 @@ async def 광산도움(ctx):
     embed3.add_field(name="`ad채굴`", value="채굴합니다. 5초 쿨타임이 있습니다", inline=False)
     embed3.add_field(name="`ad닉네임 {변경할 닉네임}`", value="닉네임을 변경합니다.", inline=False)
     embed3.add_field(name="`ad판매 {광물} {갯수(모두)}`", value="광물을 판매해 아드코인을 획득합니다.", inline=False)
+    embed3.add_field(name="`ad더블 {배팅금액}`", value="절반의 확률로 두배를 얻거나 잃습니다.", inline=False)
     await ctx.send(embed=embed3)
         
 @client.command()

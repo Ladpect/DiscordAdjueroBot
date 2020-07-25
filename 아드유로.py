@@ -143,17 +143,31 @@ async def 채굴(ctx):
     pro = random.randint(1, 100)
     m = "blank"
     num = 0
+    men = ctx.author.mention
+    #---------------------------------------
     tr = "F"
     ty = random.randint(1, 2)
     ad = random.randint(2, 4)
     money = random.randint(100, 300)
+    #---------------------------------------
+    exp = random.randint(1, 5)
+    #---------------------------------------
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석 FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
+    if result[14] >= 100:
+        sql = (f"UPDATE 광산 SET 경험치 = {result[14] - 100} WHERE user_id = {ctx.author.id};")
+        cursor.execute(sql)
+        db.commit()
+        await asyncio.sleep(1)
+        sql1 = (f"UPDATE 광산 SET 레벨 = {int(result[15]) + int(1)} WHERE user_id = {ctx.author.id};")
+        cursor.execute(sql1)
+        db.commit()
+        await ctx.send(f"{men} :tada: 레벨이 올랐다! :tada: 현재레벨 : {result[15] + 1}")
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     else:
-        msg = await ctx.send(":pick: 채굴을 시작합니다 :pick:")
+        msg = await ctx.send(f"{men} :pick: 채굴을 시작합니다 :pick:")
         await asyncio.sleep(5)
         if pro >= 1 and pro <= 16:
             m = ":dove: 둘기석 :dove:"
@@ -222,20 +236,23 @@ async def 채굴(ctx):
                 cursor.execute(sql)
                 db.commit()
             else:
-                sql = (f"UPDATE 광산 SET coin = {int(result[2]) + money} WHERE user_id = {ctx.author.id};")
+                sql = (f"UPDATE 광산 SET coin = {result[2] + money} WHERE user_id = {ctx.author.id};")
                 cursor.execute(sql)
                 db.commit()
-        else:
+        elif pro >= 85:
             tr = "N"
         if tr == "F":
-            await msg.edit(content=f"{m}을 {str(num)}개 얻었다!")
+            await msg.edit(content=f"{men} {m}을 {str(num)}개 얻었다!")
         elif tr == "N":
-            await msg.edit(content="아무 가치도 없는 돌이다...")
+            await msg.edit(content=f"{men} 아무 가치도 없는 돌이다...")
         elif tr == "T":
             if ty == 1:
-                await msg.edit(content=f"어라? :gift: 보물상자다! :gift: 열어보니 :boom: 아드석 :boom: {ad}개가 들어있었다!")
+                await msg.edit(content=f"{men} 어라? :gift: 보물상자다! :gift: 열어보니 :boom: 아드석 :boom: {ad}개가 들어있었다!")
             elif ty == 2:
-                await msg.edit(content=f"어라? :gift: 보물상자다! :gift: 열어보니 {money} :euro:가 있었다!")
+                await msg.edit(content=f"{men} 어라? :gift: 보물상자다! :gift: 열어보니 {money} :euro:가 있었다!")
+        sql = (f"UPDATE 광산 SET 채굴량 = {int(result[13]) + int(1)}, 경험치 = {int(result[14]) + int(exp)} WHERE user_id = {ctx.author.id};")
+        cursor.execute(sql)
+        await ctx.send(f"{men} :test_tube: 경험치 :test_tube: 가 {exp}만큼 올랐다!")
 
 @client.command(pass_content=True)
 async def 지갑(ctx):

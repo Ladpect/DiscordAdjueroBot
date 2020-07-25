@@ -288,7 +288,7 @@ async def 판매(ctx, mi, nu):
     sell = 0
     t = 0
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석 FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석 FROM 광산 WHERE user_id = {ctx.author.id}")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")

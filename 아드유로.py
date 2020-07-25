@@ -143,6 +143,10 @@ async def 채굴(ctx):
     pro = random.randint(1, 100)
     m = "blank"
     num = 0
+    tr = "F"
+    ty = random.randint(1, 2)
+    ad = random.randint(2, 4)
+    money = random.randint(100, 300)
     cursor = db.cursor()
     cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석 FROM 광산 WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
@@ -151,70 +155,87 @@ async def 채굴(ctx):
     else:
         msg = await ctx.send(":pick: 채굴을 시작합니다 :pick:")
         await asyncio.sleep(5)
-        if pro >= 1 and pro <= 13:
+        if pro >= 1 and pro <= 16:
             m = ":dove: 둘기석 :dove:"
             num = random.randint(5, 17)
             sql = (f"UPDATE 광산 SET 둘기석 = {int(result[3]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 14 and pro <= 25:
+        elif pro >= 17 and pro <= 28:
             m = ":droplet: 삼다석 :droplet:"
             num = random.randint(4, 12)
             sql = (f"UPDATE 광산 SET 삼다석 = {int(result[4]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 26 and pro <= 37:
+        elif pro >= 29 and pro <= 39:
             m = ":water_buffalo:  불즈석 :water_buffalo: "
             num = random.randint(3, 9)
             sql = (f"UPDATE 광산 SET 불즈석 = {int(result[5]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 38 and pro <= 46:
+        elif pro >= 40 and pro <= 49:
             m = ":full_moon: 로아석 :full_moon:"
             num = random.randint(2, 6)
             sql = (f"UPDATE 광산 SET 로아석 = {int(result[6]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 47 and pro <= 55:
+        elif pro >= 50 and pro <= 58:
             m = ":sparkles: 에릭석 :sparkles:"
             num = random.randint(3, 6)
             sql = (f"UPDATE 광산 SET 에릭석 = {int(result[7]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 56 and pro <= 61:
+        elif pro >= 59 and pro <= 65:
             m = ":fire: 염라석 :fire:"
             num = random.randint(2, 5)
             sql = (f"UPDATE 광산 SET 염라석 = {int(result[8]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 62 and pro <= 69:
+        elif pro >= 66 and pro <= 72:
             m = ":classical_building: 템프석 :classical_building:"
             num = random.randint(2, 8)
             sql = (f"UPDATE 광산 SET 템프석 = {int(result[9]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 70 and pro <= 75:
+        elif pro >= 73 and pro <= 78:
             m = ":sun_with_face: 태양석 :sun_with_face:"
             num = random.randint(2, 6)
             sql = (f"UPDATE 광산 SET 태양석 = {int(result[10]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro >= 76 and pro <= 79:
+        elif pro >= 79 and pro <= 82:
             m = ":heart: 사랑석 :heart:"
             num = random.randint(2, 6)
             sql = (f"UPDATE 광산 SET 사랑석 = {int(result[11]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
-        elif pro == 80:
+        elif pro == 83:
             m = ":boom: 아드석 :boom:"
             num = random.randint(1, 2)
             sql = (f"UPDATE 광산 SET 아드석 = {int(result[12]) + int(num)} WHERE user_id = {ctx.author.id};")
             cursor.execute(sql)
             db.commit()
+        elif pro == 84:
+            tr == "T"
+            if ty == 1:
+                sql = (f"UPDATE 광산 SET 아드석 = {int(result[12]) + int(ad)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            else:
+                sql = (f"UPDATE 광산 SET coin = {result[2] + money} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
         else:
-            m = ":new_moon: 돌 :new_moon:"
-            num = "여러"
-        await msg.edit(content=f"{m}을 {str(num)}개 얻었다!")
+            tr = "N"
+        if tr == "F":
+            await msg.edit(content=f"{m}을 {str(num)}개 얻었다!")
+        elif tr == "N":
+            await msg.edit(content="아무 가치도 없는 돌이다...")
+        elif tr == "T":
+            if ty == 1:
+                await msg.edit(content=f"어라? :gift: 보물상자다! :gift: 열어보니 :boom: 아드석 :boom: {ad}개가 들어있었다!")
+            elif ty == 2:
+                await msg.edit(content=f"어라? :gift: 보물상자다! :gift: 열어보니 {money} :euro:가 있었다!")
 
 @client.command(pass_content=True)
 async def 지갑(ctx):

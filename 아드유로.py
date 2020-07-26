@@ -125,7 +125,7 @@ async def 광산(ctx):
     else:
         embed = discord.Embed(title=f":pick: {result[1]}님의 창고 :pick:", description="아드광산", color=0x4641D9)
         embed.add_field(name="채굴횟수", value=f"{result[13]}번", inline=False)
-        embed.add_field(name="경험치", value=f"{result[14]}", inline=True)
+        embed.add_field(name="경험치", value=f":test_tube: {result[14]} :test_tube:", inline=True)
         embed.add_field(name=":dove: 둘기석 :dove:", value=f"{result[3]}개", inline=True)
         embed.add_field(name=":droplet: 삼다석 :droplet:", value=f"{result[4]}개", inline=True)
         embed.add_field(name=":water_buffalo:  불즈석 :water_buffalo: ", value=f"{result[5]}개", inline=True)

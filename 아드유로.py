@@ -331,7 +331,7 @@ async def 판매(ctx, mi, nu):
                 cursor.execute(sql)
                 db.commit()
                 await ctx.send(f"{result[1]}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
-        else:
+        elif str(type(nu)) == "<class 'int'>":
             nu = int(nu)
             if int(result[t]) < int(nu):
                 await ctx.send(f"{result[1]}님의 {mi}는 {result[t]}개입니다.")

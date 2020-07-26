@@ -323,14 +323,15 @@ async def 판매(ctx, mi, nu):
         elif mi == "아드석":
             sell = 150
             t = 12
-        if str(nu) == "모두":
-            if int(result[t]) == int(0):
-                await ctx.send(f"{result[1]}님은 {mi}을 보유하고 있지 않습니다.")
-            else:    
-                sql = (f"UPDATE 광산 SET coin = {int(result[2] + result[t] * sell)}, {mi} = 0 WHERE user_id = {ctx.author.id};")
-                cursor.execute(sql)
-                db.commit()
-                await ctx.send(f"{result[1]}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
+        if str(type(nu)) == "<class 'str'>":
+            if str(nu) == "모두":
+                if int(result[t]) == int(0):
+                    await ctx.send(f"{result[1]}님은 {mi}을 보유하고 있지 않습니다.")
+                else:    
+                    sql = (f"UPDATE 광산 SET coin = {int(result[2] + result[t] * sell)}, {mi} = 0 WHERE user_id = {ctx.author.id};")
+                    cursor.execute(sql)
+                    db.commit()
+                    await ctx.send(f"{result[1]}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
         elif str(type(nu)) == "<class 'int'>":
             nu = int(nu)
             if int(result[t]) < int(nu):

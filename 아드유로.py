@@ -125,8 +125,7 @@ async def 광산(ctx):
     else:
         embed = discord.Embed(title=f":pick: {result[1]}님의 창고 :pick:", description="아드광산", color=0x4641D9)
         embed.add_field(name="채굴횟수", value=f"{result[13]}번", inline=False)
-        embed.add_field(name="경험치", value=f"{result[14]}/100", inline=True)
-        embed.add_field(name="레벨", value=f"Lv.{result[15]}", inline=False)
+        embed.add_field(name="경험치", value=f"{result[14]}", inline=True)
         embed.add_field(name=":dove: 둘기석 :dove:", value=f"{result[3]}개", inline=True)
         embed.add_field(name=":droplet: 삼다석 :droplet:", value=f"{result[4]}개", inline=True)
         embed.add_field(name=":water_buffalo:  불즈석 :water_buffalo: ", value=f"{result[5]}개", inline=True)
@@ -158,15 +157,6 @@ async def 채굴(ctx):
     cursor = db.cursor()
     cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
-    if result[14] >= 100:
-        sql = (f"UPDATE 광산 SET 경험치 = {int(result[14]) - int(100)} WHERE user_id = {ctx.author.id};")
-        cursor.execute(sql)
-        db.commit()
-        await asyncio.sleep(1)
-        sql1 = (f"UPDATE 광산 SET 레벨 = {int(result[15]) + int(1)} WHERE user_id = {ctx.author.id};")
-        cursor.execute(sql1)
-        db.commit()
-        await ctx.send(f"{men} :tada: 레벨이 올랐다! :tada: 현재레벨 : {result[15] + 1}")
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     else:

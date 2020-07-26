@@ -159,7 +159,7 @@ async def 채굴(ctx):
     cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = '{ctx.author.id}'")
     result = cursor.fetchone()
     if result[14] >= 100:
-        sql = (f"UPDATE 광산 SET 경험치 = {result[14] - 100} WHERE user_id = {ctx.author.id};")
+        sql = (f"UPDATE 광산 SET 경험치 = {int(result[14]) - int(100)} WHERE user_id = {ctx.author.id};")
         cursor.execute(sql)
         db.commit()
         await asyncio.sleep(1)
@@ -323,16 +323,7 @@ async def 판매(ctx, mi, nu):
         elif mi == "아드석":
             sell = 150
             t = 12
-        if str(type(nu)) == "<class 'str'>":
-            if str(nu) == "모두":
-                if int(result[t]) == int(0):
-                    await ctx.send(f"{result[1]}님은 {mi}을 보유하고 있지 않습니다.")
-                else:    
-                    sql = (f"UPDATE 광산 SET coin = {int(result[2] + result[t] * sell)}, {mi} = 0 WHERE user_id = {ctx.author.id};")
-                    cursor.execute(sql)
-                    db.commit()
-                    await ctx.send(f"{result[1]}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
-        elif str(type(nu)) == "<class 'int'>":
+        try:
             nu = int(nu)
             if int(result[t]) < int(nu):
                 await ctx.send(f"{result[1]}님의 {mi}는 {result[t]}개입니다.")
@@ -341,6 +332,15 @@ async def 판매(ctx, mi, nu):
                 cursor.execute(sql)
                 db.commit()
                 await ctx.send(f"{result[1]}님은 {mi}를 판매하여 {int(nu) * sell} :euro: 를 얻었습니다!")
+        except ValueError:
+            if str(nu) == "모두":
+                if int(result[t]) == int(0):
+                    await ctx.send(f"{result[1]}님은 {mi}을 보유하고 있지 않습니다.")
+                else:    
+                    sql = (f"UPDATE 광산 SET coin = {int(result[2] + result[t] * sell)}, {mi} = 0 WHERE user_id = {ctx.author.id};")
+                    cursor.execute(sql)
+                    db.commit()
+                    await ctx.send(f"{result[1]}님은 {mi}를 전부 판매하여 {result[t] * sell} :euro: 를 얻었습니다!")
                 
 @client.command(pass_content=True)
 async def 더블(ctx, bet):

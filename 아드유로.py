@@ -57,7 +57,7 @@ async def 삭제(ctx, a):
 @client.command(pass_context=True)
 async def 가입(ctx):
     cursor = db.cursor()
-    cursor.execute(f"SELECT 'user_id' FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT 'user_id' FROM 광산 WHERE user_id = {ctx.author.id};")
     result = cursor.fetchone()
     if result is None:
         channel = ctx.channel
@@ -72,11 +72,11 @@ async def 가입(ctx):
         try: 
             reaction, user = await client.wait_for('reaction_add', timeout = 5, check = lambda reaction, user: user == ctx.author and str(reaction.emoji) in ['⭕', '❌'])
             if str(reaction.emoji) == '⭕':
-                sql = (f"insert into 광산(user_id, user_name, coin) values('{ctx.author.id}','{ctx.author.name}','0')")
+                sql = (f"insert into 광산(user_id, user_name, coin) values('{ctx.author.id}','{ctx.author.name}','0');")
                 cursor.execute(sql)
-                sql1 = (f"UPDATE 광산 SET 둘기석 = '0', 삼다석 = '0', 불즈석 = '0', 로아석 = '0', 에릭석 = '0' WHERE user_id = '{ctx.author.id}'")
+                sql1 = (f"UPDATE 광산 SET 둘기석 = '0', 삼다석 = '0', 불즈석 = '0', 로아석 = '0', 에릭석 = '0' WHERE user_id = '{ctx.author.id}';")
                 cursor.execute(sql1)
-                sql2 = (f"UPDATE 광산 SET 염라석 = '0', 템프석 = '0', 태양석 = '0', 사랑석 = '0', 아드석 = '0' WHERE user_id = '{ctx.author.id}'")
+                sql2 = (f"UPDATE 광산 SET 염라석 = '0', 템프석 = '0', 태양석 = '0', 사랑석 = '0', 아드석 = '0' WHERE user_id = '{ctx.author.id}';")
                 cursor.execute(sql2)
                 db.commit()
                 await ctx.send(f"{ctx.author.name}님은 가입되었습니다.")
@@ -90,7 +90,7 @@ async def 가입(ctx):
 @client.command()
 async def 탈퇴(ctx):
     cursor = db.cursor()
-    cursor.execute(f"SELECT 'user_id' FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT 'user_id' FROM 광산 WHERE user_id = '{ctx.author.id}';")
     result = cursor.fetchone()
     channel = ctx.channel
     embed = discord.Embed(title="탈퇴", color=0x4641D9)
@@ -106,7 +106,7 @@ async def 탈퇴(ctx):
             if result is None:
                 await ctx.send(f"{ctx.author.name}님은 가입하지 않았습니다.")
             else:
-                sql = (f"DELETE FROM 광산 WHERE user_id = '{ctx.author.id}'")
+                sql = (f"DELETE FROM 광산 WHERE user_id = '{ctx.author.id}';")
                 cursor.execute(sql)
                 db.commit()
                 await ctx.send(f"{ctx.author.name}님은 탈퇴했습니다.")
@@ -118,7 +118,7 @@ async def 탈퇴(ctx):
 @client.command(pass_context=True)
 async def 광산(ctx):
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = {ctx.author.id}")
+    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = {ctx.author.id};")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
@@ -155,7 +155,7 @@ async def 채굴(ctx):
     exp = random.randint(1, 5)
     #---------------------------------------
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 레벨 FROM 광산 WHERE user_id = '{ctx.author.id}';")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
@@ -250,7 +250,7 @@ async def 채굴(ctx):
 @client.command(pass_content=True)
 async def 지갑(ctx):
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name, coin FROM 광산 WHERE user_id = '{ctx.author.id}';")
     result = cursor.fetchone()
     if result is None:
         await ctx.channel.send("`ad가입`을 통해 가입을 해주세요.")
@@ -264,7 +264,7 @@ async def 지갑(ctx):
 async def 닉네임(ctx):
     name = ctx.message.content[6:]
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name FROM 광산 WHERE user_id = '{ctx.author.id}'")
+    cursor.execute(f"SELECT user_id, user_name FROM 광산 WHERE user_id = '{ctx.author.id}';")
     result = cursor.fetchone()
     if result is None:
         await ctx.channel.send("`ad가입`을 통해 가입을 해주세요.")
@@ -278,7 +278,7 @@ async def 판매(ctx, mi, nu):
     sell = 0
     t = 0
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석 FROM 광산 WHERE user_id = {ctx.author.id}")
+    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석 FROM 광산 WHERE user_id = {ctx.author.id};")
     result = cursor.fetchone()
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")

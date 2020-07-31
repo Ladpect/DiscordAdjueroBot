@@ -269,7 +269,7 @@ async def 닉네임(ctx):
     if result is None:
         await ctx.send("`ad가입`을 통해 가입을 해주세요.")
     if name is None:
-        await ctx.send("바꿀 닉네임을 입력해주세요.)
+        await ctx.send("바꿀 닉네임을 입력해주세요.")
     else:
         sql = (f"UPDATE 광산 SET user_name = '{name}' WHERE user_id = {ctx.author.id};")
         cursor.execute(sql)

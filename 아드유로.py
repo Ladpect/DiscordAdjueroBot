@@ -397,7 +397,7 @@ async def 도움(ctx):
     embed2 = discord.Embed(title="기타", description="URL", color=0x4641D9)
     embed2.add_field(name="아드봇 초대", value="[초대](https://discord.com/api/oauth2/authorize?client_id=685806440224653341&permissions=8&scope=bot)", inline=False)
     embed2.add_field(name="공식 아드서버", value="[아드서버](https://discord.gg/6WH2cgU)", inline=False)
-    embed2.add_field(name="만든 환자", value="ad", inline=False)
+    embed2.add_field(name="만든 환자", value="adjuero#5331", inline=False)
     await ctx.send(embed=embed2)
         
 @client.command()

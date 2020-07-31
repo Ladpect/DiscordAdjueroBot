@@ -392,7 +392,7 @@ async def 도움(ctx):
     embed.add_field(name="이미지", value="`ad이미지`에서 확인하세요", inline=False)
     embed.add_field(name="기타 1", value="`ad거꾸로 {할말}`, `ad질문 {질문}`(O 또는 X만 가능)", inline=False)
     embed.add_field(name="기타 2", value="`ad룰렛`, `ad주사위 {최대 숫자}`, `ad타이머`", inline=False)
-    embed.add_field(name="미니게임", value="`ad유로`", inline=False)
+    embed.add_field(name="미니게임", value="`ad광산도움`", inline=False)
     await ctx.send("아드봇의 커맨드들", embed=embed)
     embed2 = discord.Embed(title="기타", description="URL", color=0x4641D9)
     embed2.add_field(name="아드봇 초대", value="[초대](https://discord.com/api/oauth2/authorize?client_id=685806440224653341&permissions=8&scope=bot)", inline=False)
@@ -401,7 +401,7 @@ async def 도움(ctx):
     await ctx.send(embed=embed2)
         
 @client.command()
-async def 유로(ctx):
+async def (ctx):
     embed3 = discord.Embed(title=":pick: 아드광산 :pick:", color=0x4641D9)
     embed3.add_field(name="`ad가입`", value="가입합니다.", inline=False)
     embed3.add_field(name="`ad탈퇴`", value="탈퇴합니다.", inline=False)

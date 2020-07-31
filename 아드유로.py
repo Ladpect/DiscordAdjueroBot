@@ -394,8 +394,10 @@ async def 도움(ctx):
     embed.add_field(name="게임", value="`ad룰렛`, `ad주사위 {최대 숫자}`, `ad타이머`", inline=False)
     embed.add_field(name=":euro:", value="`ad유로`", inline=False)
     await ctx.send("아드봇의 커맨드들", embed=embed)
-    embed2 = discord.Embed(title="문의", description="문의", color=0x4641D9)
-    embed2.add_field(name="문의방법", value="`adjuero#5331`로 DM주시면 됩니다", inline=False)
+    embed2 = discord.Embed(title="기타", description="URL", color=0x4641D9)
+    embed2.add_field(name="아드봇 초대", value="[초대](https://discord.com/api/oauth2/authorize?client_id=685806440224653341&permissions=8&scope=bot)", inline=False)
+    embed2.add_field(name="공식 아드서버", value="[아드서버](https://discord.gg/6WH2cgU)", inline=False)
+    embed2.add_field(name="만든 환자", value="ad", inline=False)
     await ctx.send(embed=embed2)
         
 @client.command()

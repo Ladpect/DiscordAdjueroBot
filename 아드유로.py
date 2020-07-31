@@ -401,7 +401,7 @@ async def 도움(ctx):
     await ctx.send(embed=embed2)
         
 @client.command()
-async def (ctx):
+async def 광산도움(ctx):
     embed3 = discord.Embed(title=":pick: 아드광산 :pick:", color=0x4641D9)
     embed3.add_field(name="`ad가입`", value="가입합니다.", inline=False)
     embed3.add_field(name="`ad탈퇴`", value="탈퇴합니다.", inline=False)

@@ -145,8 +145,8 @@ async def 광산(ctx):
 @commands.cooldown(1, 5, commands.BucketType.user)
 async def 채굴(ctx):
     pro = random.randint(1, 100)
-    m = "blank"
-    num = 0
+    m = "김두한"
+    num = 1972
     men = ctx.author.mention
     #---------------------------------------
     tr = "F"

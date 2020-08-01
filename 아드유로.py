@@ -78,6 +78,8 @@ async def 가입(ctx):
                 cursor.execute(sql1)
                 sql2 = (f"UPDATE 광산 SET 염라석 = '0', 템프석 = '0', 태양석 = '0', 사랑석 = '0', 아드석 = '0' WHERE user_id = '{ctx.author.id}';")
                 cursor.execute(sql2)
+                sql3 = (f"UPDATE 광산 SET 채굴량 = '0', 채굴량 = '0' WHERE user_id = '{ctx.author.id}';")
+                cursor.execute(sql3)
                 db.commit()
                 await ctx.send(f"{ctx.author.name}님은 가입되었습니다.")
             else:

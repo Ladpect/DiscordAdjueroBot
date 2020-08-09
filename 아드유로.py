@@ -16,6 +16,7 @@ async def on_ready():
     print("ready")
     print(client.user.name)
     print(client.user.id)
+
     
 @client.command(pass_content=True)
 async def 따라해(ctx, *, msg):
@@ -46,13 +47,13 @@ async def 삭제(ctx, a):
         if ctx.author.guild_permissions.administrator:
             await ctx.channel.purge(limit=int(a) + 1)
             await asyncio.sleep(3)
-            await ctx.send(f"{a}개의 메세지를 삭제했습니다")
+            await ctx.send(f"{a}개의 메세지를 삭제했어.")
             await asyncio.sleep(2)
             await ctx.channel.purge(limit=1)
         else:
-            await ctx.send(f"{ctx.author.name}님은 관리자 권한이 없습니다.")
+            await ctx.send(f"{ctx.author.name}님은 관리자 권한이 없어.")
     except CommandError:
-        await ctx.send("봇에게 메세지를 삭제할 수 있는 권한이 없거나 메세지를 삭제하지 못한 것 같습니다.")
+        await ctx.send("봇에게 메세지를 삭제할 수 있는 권한이 없거나 메세지를 삭제하지 못한 것 같아.")
 
 @client.command()
 async def 가입(ctx):
@@ -81,13 +82,13 @@ async def 가입(ctx):
                 sql3 = (f"UPDATE 광산 SET 채굴량 = '0', 채굴량 = '0' WHERE user_id = '{ctx.author.id}';")
                 cursor.execute(sql3)
                 db.commit()
-                await ctx.send(f"{ctx.author.name}님은 가입되었습니다.")
+                await ctx.send(f"{ctx.author.name}은(는) 가입되었어.")
             else:
-                await ctx.send("취소되었습니다.")
+                await ctx.send("취소되었어.")
         except asyncio.TimeoutError:
-            await ctx.send("취소되었습니다.")
+            await ctx.send("취소되었어.")
     else:
-        await ctx.send(f"{ctx.author.name}님은 이미 가입되어 있습니다.")
+        await ctx.send(f"{ctx.author.name}은(는) 이미 가입되어 있어..")
 
 @client.command()
 async def 탈퇴(ctx):
@@ -106,16 +107,16 @@ async def 탈퇴(ctx):
         reaction, user = await client.wait_for('reaction_add', timeout = 5, check = lambda reaction, user: user == ctx.author and str(reaction.emoji) in ['⭕', '❌'])
         if str(reaction.emoji) == '⭕':
             if result is None:
-                await ctx.send(f"{ctx.author.name}님은 가입하지 않았습니다.")
+                await ctx.send(f"{ctx.author.name}님은 가입하지 않았어.")
             else:
                 sql = (f"DELETE FROM 광산 WHERE user_id = '{ctx.author.id}';")
                 cursor.execute(sql)
                 db.commit()
-                await ctx.send(f"{ctx.author.name}님은 탈퇴했습니다.")
+                await ctx.send(f"{ctx.author.name}은(는) 탈퇴했어.")
         else:
-            await ctx.send("취소되었습니다.")
+            await ctx.send("취소되었어.")
     except asyncio.TimeoutError:
-        await channel.send("취소되었습니다.")
+        await channel.send("취소되었어.")
 
 @client.command()
 async def 광산(ctx):
@@ -123,9 +124,9 @@ async def 광산(ctx):
     cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치 FROM 광산 WHERE user_id = {ctx.author.id};")
     result = cursor.fetchone()
     if result is None:
-        await ctx.send("`ad가입`을 통해 가입을 해주세요.")
+        await ctx.send("`ad가입`을 통해 가입을 해줘.")
     else:
-        embed = discord.Embed(title=f":pick: {result[1]}님의 창고 :pick:", description="아드광산", color=0x4641D9)
+        embed = discord.Embed(title=f":pick: {result[1]}의 창고 :pick:", description="아드광산", color=0x4641D9)
         embed.add_field(name="채굴횟수", value=f"{result[13]}번", inline=False)
         embed.add_field(name="경험치", value=f":test_tube: {result[14]} :test_tube:", inline=True)
         embed.add_field(name=":dove: 둘기석 :dove:", value=f"{result[3]}개", inline=True)
@@ -140,114 +141,142 @@ async def 광산(ctx):
         embed.add_field(name=":boom: 아드석 :boom:", value=f"{result[12]}개", inline=True)
         await ctx.send(embed=embed)
 
+@client.command()
+async def 조조병옥옥(ctx):
+    cursor = db.cursor()
+    allow = (f"UPDATE 광산 SET allow = 'T' WHERE user_id = {ctx.author.id};")
+    cursor.execute(allow)
+    print("ok")
 
 @client.command()
 @commands.cooldown(1, 5, commands.BucketType.user)
 async def 채굴(ctx):
-    pro = random.randint(1, 100)
-    m = "김두한"
-    num = 1972
-    men = ctx.author.mention
     #---------------------------------------
     tr = "F"
     ty = random.randint(1, 2)
     ad = random.randint(2, 4)
     money = random.randint(100, 300)
     #---------------------------------------
-    exp = random.randint(1, 5)
+    total_exp = 0
     #---------------------------------------
     cursor = db.cursor()
-    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치 FROM 광산 WHERE user_id = '{ctx.author.id}';")
+    cursor.execute(f"SELECT user_id, user_name, coin, 둘기석, 삼다석, 불즈석, 로아석, 에릭석, 염라석, 템프석, 태양석, 사랑석, 아드석, 채굴량, 경험치, 채굴레벨, 에너지레벨, allow FROM 광산 WHERE user_id = '{ctx.author.id}';")
     result = cursor.fetchone()
-    if result is None:
-        await ctx.send("`ad가입`을 통해 가입을 해주세요.")
+    ene = float(5.5 - result[16] * 0.5)
+    ti = int(result[15])
+    if result[17] == "F":
+        await ctx.send("채굴중이거나 에너지 충전중이다...!")
+        pass
+    elif result is None:
+        await ctx.send("`ad가입`을 통해 가입을 해줘.")
     else:
-        msg = await ctx.send(f"{men} :pick: 채굴을 시작합니다 :pick:")
-        await asyncio.sleep(5)
-        if pro >= 1 and pro <= 16:
-            m = ":dove: 둘기석 :dove:"
-            num = random.randint(5, 17)
-            sql = (f"UPDATE 광산 SET 둘기석 = {int(result[3]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 17 and pro <= 28:
-            m = ":droplet: 삼다석 :droplet:"
-            num = random.randint(4, 12)
-            sql = (f"UPDATE 광산 SET 삼다석 = {int(result[4]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 29 and pro <= 39:
-            m = ":water_buffalo:  불즈석 :water_buffalo: "
-            num = random.randint(3, 9)
-            sql = (f"UPDATE 광산 SET 불즈석 = {int(result[5]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 40 and pro <= 49:
-            m = ":full_moon: 로아석 :full_moon:"
-            num = random.randint(2, 6)
-            sql = (f"UPDATE 광산 SET 로아석 = {int(result[6]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 50 and pro <= 58:
-            m = ":sparkles: 에릭석 :sparkles:"
-            num = random.randint(3, 6)
-            sql = (f"UPDATE 광산 SET 에릭석 = {int(result[7]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 59 and pro <= 65:
-            m = ":fire: 염라석 :fire:"
-            num = random.randint(2, 5)
-            sql = (f"UPDATE 광산 SET 염라석 = {int(result[8]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 66 and pro <= 72:
-            m = ":classical_building: 템프석 :classical_building:"
-            num = random.randint(2, 8)
-            sql = (f"UPDATE 광산 SET 템프석 = {int(result[9]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 73 and pro <= 78:
-            m = ":sun_with_face: 태양석 :sun_with_face:"
-            num = random.randint(2, 6)
-            sql = (f"UPDATE 광산 SET 태양석 = {int(result[10]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro >= 79 and pro <= 82:
-            m = ":heart: 사랑석 :heart:"
-            num = random.randint(2, 6)
-            sql = (f"UPDATE 광산 SET 사랑석 = {int(result[11]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro == 83:
-            m = ":boom: 아드석 :boom:"
-            num = random.randint(1, 2)
-            sql = (f"UPDATE 광산 SET 아드석 = {int(result[12]) + int(num)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
-            db.commit()
-        elif pro == 84:
-            tr == "T"
-            if ty == 1:
-                sql = (f"UPDATE 광산 SET 아드석 = {int(result[12]) + int(ad)} WHERE user_id = {ctx.author.id};")
+        allow = (f"UPDATE 광산 SET allow = 'F' WHERE user_id = {ctx.author.id};")
+        cursor.execute(allow)
+        em = discord.Embed(name="채굴시작", color=0x01DF3A)
+        em.add_field(name=f":pick:", value=f"{ctx.author.mention}, 채굴시작!")
+        await ctx.send(embed=em)
+        msg = await ctx.author.send(f":pick: 채굴중...({2 * 5 * ti}초) :pick:")
+        await asyncio.sleep(2 * 5 * ti)
+        for i in range(0, 5 * ti):
+            exp = random.randint(1, 5)
+            pro = random.randint(1, 100)
+            m = "blank"
+            num = 0
+            if pro >= 1 and pro <= 20:
+                m = ":dove: 둘기석 :dove:"
+                num = random.randint(5, 17)
+                sql = (f"UPDATE 광산 SET 둘기석 = {int(result[3]) + int(num)} WHERE user_id = {ctx.author.id};")
                 cursor.execute(sql)
                 db.commit()
-            else:
-                sql = (f"UPDATE 광산 SET coin = {result[2] + money} WHERE user_id = {ctx.author.id};")
+            elif pro >= 21 and pro <= 36:
+                m = ":droplet: 삼다석 :droplet:"
+                num = random.randint(4, 12)
+                sql = (f"UPDATE 광산 SET 삼다석 = {int(result[4]) + int(num)} WHERE user_id = {ctx.author.id};")
                 cursor.execute(sql)
                 db.commit()
-        elif pro >= 85:
-            tr = "N"
-        if tr == "F":
-            await msg.edit(content=f"{men} {m}을 {str(num)}개 얻었다!")
-        elif tr == "N":
-            await msg.edit(content=f"{men} 아무 가치도 없는 돌이다...")
-        elif tr == "T":
-            if ty == 1:
-                await msg.edit(content=f"{men} 어라? :gift: 보물상자다! :gift: 열어보니 :boom: 아드석 :boom: {ad}개가 들어있었다!")
-            elif ty == 2:
-                await msg.edit(content=f"{men} 어라? :gift: 보물상자다! :gift: 열어보니 {money} :euro:가 있었다!")
-        sql = (f"UPDATE 광산 SET 채굴량 = {int(result[13]) + int(1)}, 경험치 = {int(result[14]) + int(exp)} WHERE user_id = {ctx.author.id};")
-        cursor.execute(sql)
-        await ctx.send(f"{men} :test_tube: 경험치 :test_tube: 가 {exp}만큼 올랐다!")
+            elif pro >= 37 and pro <= 50:
+                m = ":water_buffalo:  불즈석 :water_buffalo: "
+                num = random.randint(3, 9)
+                sql = (f"UPDATE 광산 SET 불즈석 = {int(result[5]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 51 and pro <= 60:
+                m = ":full_moon: 로아석 :full_moon:"
+                num = random.randint(2, 6)
+                sql = (f"UPDATE 광산 SET 로아석 = {int(result[6]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 61 and pro <= 68:
+                m = ":sparkles: 에릭석 :sparkles:"
+                num = random.randint(3, 6)
+                sql = (f"UPDATE 광산 SET 에릭석 = {int(result[7]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 69 and pro <= 75:
+                m = ":fire: 염라석 :fire:"
+                num = random.randint(2, 5)
+                sql = (f"UPDATE 광산 SET 염라석 = {int(result[8]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 76 and pro <= 82:
+                m = ":classical_building: 템프석 :classical_building:"
+                num = random.randint(2, 8)
+                sql = (f"UPDATE 광산 SET 템프석 = {int(result[9]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 82 and pro <= 87:
+                m = ":sun_with_face: 태양석 :sun_with_face:"
+                num = random.randint(2, 6)
+                sql = (f"UPDATE 광산 SET 태양석 = {int(result[10]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 88 and pro <= 92:
+                m = ":heart: 사랑석 :heart:"
+                num = random.randint(2, 6)
+                sql = (f"UPDATE 광산 SET 사랑석 = {int(result[11]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro >= 93 and pro <= 94:
+                m = ":boom: 아드석 :boom:"
+                num = random.randint(1, 2)
+                sql = (f"UPDATE 광산 SET 아드석 = {int(result[12]) + int(num)} WHERE user_id = {ctx.author.id};")
+                cursor.execute(sql)
+                db.commit()
+            elif pro == 95:
+                tr == "T"
+                if ty == 1:
+                    sql = (f"UPDATE 광산 SET 아드석 = {int(result[12]) + int(ad)} WHERE user_id = {ctx.author.id};")
+                    cursor.execute(sql)
+                    db.commit()
+                else:
+                    sql = (f"UPDATE 광산 SET coin = {result[2] + money} WHERE user_id = {ctx.author.id};")
+                    cursor.execute(sql)
+                    db.commit()
+            elif pro >= 95:
+                tr = "N"
+            sql = (f"UPDATE 광산 SET 채굴량 = {int(result[13]) + int(1)}, 경험치 = {int(result[14]) + int(exp)} WHERE user_id = {ctx.author.id};")
+            cursor.execute(sql)
+            total_exp += exp    
+            if tr == "F":
+                await ctx.author.send(f"{m}을 {str(num)}개 얻었다! :test_tube: 경험치 :test_tube: + {exp}")
+            elif tr == "N":
+                await ctx.author.send(f"아무 가치도 없는 돌이다... :test_tube: 경험치 :test_tube: + {exp}")
+            elif tr == "T":
+                if ty == 1:
+                    await ctx.author.send(f"어라? :gift: 보물상자다! :gift: 열어보니 :boom: 아드석 :boom: {ad}개가 들어있었다! :test_tube: 경험치 :test_tube: + {exp}")
+                elif ty == 2:
+                    await ctx.author.send(f"어라? :gift: 보물상자다! :gift: 열어보니 {money} :euro:가 있었다! :test_tube: 경험치 :test_tube: + {exp}")
+        await ctx.author.send(f"얻은 경험치 : {total_exp}   에너지 충전시간 : {ene * float(6 * result[15])}초")
+        emb = discord.Embed(name="채굴완료", color=0x01DF3A)
+        emb.add_field(name=f":pick:", value=f"{ctx.author.mention}, 채굴완료!")
+        await ctx.send(embed=emb)
+        await asyncio.sleep(ene * float(6 * result[15]))
+        allow2 = (f"UPDATE 광산 SET allow = 'T' WHERE user_id = {ctx.author.id};")
+        cursor.execute(allow2)
+        await ctx.author.send("에너지 충전 완료!")
+        emb = discord.Embed(name="에너지", color=0x01DF3A)
+        emb.add_field(name=f":pick:", value=f"{ctx.author.mention}, 에너지 충전 완료!")
+        await ctx.send(embed=emb)
 
 @client.command()
 async def 지갑(ctx):
@@ -289,16 +318,16 @@ async def 판매(ctx, mi, nu):
             await ctx.send("`ad가입`을 통해 가입을 해주세요.")
         else:
             if mi == "둘기석":
-                sell = 3
+                sell = 2
                 t = 3
             elif mi == "삼다석":
-                sell = 5
+                sell = 3
                 t = 4
             elif mi == "불즈석":
-                sell = 10
+                sell = 5
                 t = 5
             elif mi == "로아석":
-                sell = 15
+                sell = 10
                 t = 6
             elif mi == "에릭석":
                 sell = 15
@@ -307,16 +336,16 @@ async def 판매(ctx, mi, nu):
                 sell = 20
                 t = 8
             elif mi == "템프석":
-                sell = 30
+                sell = 25
                 t = 9
             elif mi == "태양석":
-                sell = 40
+                sell = 30
                 t = 10
             elif mi == "사랑석":
                 sell = 60
                 t = 11
             elif mi == "아드석":
-                sell = 150
+                sell = 100
                 t = 12
             try:
                 nu = int(nu)
@@ -387,7 +416,7 @@ async def 안녕(ctx):
         
 @client.command()
 async def 도움(ctx):
-    embed = discord.Embed(title="아드유로 봇 명령어들", description="이용법은 ad(명령어)야. 적다고? 곧 추가할거야 아드유로가 일을 해야할텐데...", color=0x4641D9)
+    embed = discord.Embed(title="아드유로 봇 명령어들", description="접두사 : ad / 개발중...", color=0x4641D9)
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/685873675555176492/685873793121779712/7648feb42b9bd245.jpg")
     embed.add_field(name="관리", value="`ad삭제 {삭제량}`", inline=False)
     embed.add_field(name="대화", value="`ad대화`에서 확인하세요", inline=False)
@@ -397,7 +426,6 @@ async def 도움(ctx):
     embed.add_field(name="미니게임", value="`ad광산도움`", inline=False)
     await ctx.send("아드봇의 커맨드들", embed=embed)
     embed2 = discord.Embed(title="기타", description="URL", color=0x4641D9)
-    embed2.add_field(name="아드봇 초대", value="[초대](https://discord.com/api/oauth2/authorize?client_id=685806440224653341&permissions=8&scope=bot)", inline=False)
     embed2.add_field(name="공식 아드서버", value="[아드서버](https://discord.gg/6WH2cgU)", inline=False)
     embed2.add_field(name="만든 환자", value="adjuero#5331", inline=False)
     await ctx.send(embed=embed2)
@@ -581,6 +609,5 @@ async def 룰렛(ctx):
         embed.add_field(name="result", value="YEAHHHHHH", inline=False)
     await ctx.channel.send(embed=embed)
     await ctx.channel.send(mention)
-    
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token, bot=True, reconnect=True)

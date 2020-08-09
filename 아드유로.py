@@ -245,8 +245,6 @@ async def 채굴(ctx):
                     sql = (f"UPDATE 광산 SET coin = {result[2] + money} WHERE user_id = {ctx.author.id};")
                     cursor.execute(sql)
                     db.commit()
-            sql = (f"UPDATE 광산 SET 채굴량 = {int(result[13]) + int(1)}, 경험치 = {int(result[14]) + int(exp)} WHERE user_id = {ctx.author.id};")
-            cursor.execute(sql)
             total_exp += exp    
             if tr == "F":
                 await ctx.author.send(f"{m}을 {str(num)}개 얻었다! :test_tube: 경험치 :test_tube: + {exp}")
@@ -256,6 +254,8 @@ async def 채굴(ctx):
                 elif ty == 2:
                     await ctx.author.send(f"어라? :gift: 보물상자다! :gift: 열어보니 {money} :euro:가 있었다! :test_tube: 경험치 :test_tube: + {exp}")
         await ctx.author.send(f"얻은 경험치 : {total_exp}   에너지 충전시간 : {ene * float(6 * result[15])}초")
+        sql22 = (f"UPDATE 광산 SET 채굴량 = {int(result[13]) + int(1)}, 경험치 = {int(result[14]) + int(total_exp)} WHERE user_id = {ctx.author.id};")
+        cursor.execute(sql22)
         emb = discord.Embed(name="채굴완료", color=0x01DF3A)
         emb.add_field(name=f":pick:", value=f"{ctx.author.mention}, 채굴완료!")
         await ctx.send(embed=emb)

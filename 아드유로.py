@@ -142,13 +142,6 @@ async def 광산(ctx):
         await ctx.send(embed=embed)
 
 @client.command()
-async def 조조병옥옥(ctx):
-    cursor = db.cursor()
-    allow = (f"UPDATE 광산 SET allow = 'T' WHERE user_id = {ctx.author.id};")
-    cursor.execute(allow)
-    print("ok")
-
-@client.command()
 @commands.cooldown(1, 5, commands.BucketType.user)
 async def 채굴(ctx):
     #---------------------------------------

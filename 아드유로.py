@@ -16,6 +16,9 @@ async def on_ready():
     print("ready")
     print(client.user.name)
     print(client.user.id)
+    cursor = db.cursor()
+    cursor.execute("select * from 광산;")
+    cursor.execute("UPDATE 광산 SET allow = 'T' WHERE allow = 'F';")
 
     
 @client.command(pass_content=True)

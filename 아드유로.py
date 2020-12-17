@@ -47,7 +47,7 @@ async def 질문(ctx):
 @client.command(pass_content=True)
 async def 삭제(ctx, a):
     try:
-        if ctx.author.guild_permissions.administrator:
+        if ctx.author.guild_permissions.administrator or ctx.author.id == '478358144939065345':
             await ctx.channel.purge(limit=int(a) + 1)
             await asyncio.sleep(3)
             await ctx.send(f"{a}개의 메세지를 삭제했어.")

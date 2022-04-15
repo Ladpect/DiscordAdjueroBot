@@ -3,7 +3,8 @@ import os, sys, json
 from discord.ext import commands
 import psycopg2
 from discord.ext.commands import CommandError
-client = commands.Bot(command_prefix="ad", case_insensitive=True)
+intents = discord.Intents.all()
+client = commands.Bot(command_prefix="ad", case_insensitive=True, intents=intents)
 
 db = psycopg2.connect(database="dc9hhd2o22qlo3", 
                         user="midsidwlblizqq",
